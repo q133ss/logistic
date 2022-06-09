@@ -9,8 +9,7 @@
             </div>
             <select class="c_select" id="track_i" name="sort" style="display: none">
                 <option>На чем будем везти</option>
-                <option value="default" selected="">ЖД</option>
-                <option value="element_2">Авто</option>
+                <option :value="type.id" v-for="type in types">{{type.name}}</option>
             </select>
         </div>
         <div class="ind-main__form-type">
@@ -19,13 +18,7 @@
             </div>
             <select class="c_select" id="map_i" name="sort" style="display: none">
                 <option>Начальная точка маршрута</option>
-                <option value="default" selected="">ЖД</option>
-                <option value="element_2">Авто</option>
-                <option value="element_3">Авто</option>
-                <option value="element_4">Авто</option>
-                <option value="element_5">Авто</option>
-                <option value="element_6">Авто</option>
-                <option value="element_7">Авто</option>
+                <option :value="city.id" v-for="(city, key) in cities">{{city.name}}</option>
             </select>
         </div>
         <div class="ind-main__form-type">
@@ -34,13 +27,7 @@
             </div>
             <select class="c_select" id="map_i" name="sort" style="display: none">
                 <option>Конец маршрута</option>
-                <option value="default" selected="">ЖД</option>
-                <option value="element_2">Авто</option>
-                <option value="element_3">Авто</option>
-                <option value="element_4">Авто</option>
-                <option value="element_5">Авто</option>
-                <option value="element_6">Авто</option>
-                <option value="element_7">Авто</option>
+                <option :value="city.id" v-for="(city, key) in cities">{{city.name}}</option>
             </select>
         </div>
         <button class="ind-main__form-trns">
@@ -50,8 +37,30 @@
 </template>
 
 <script>
+import Axios from 'Axios';
+
 export default {
-name: "transport-find"
+name: "transport-find",
+    data: () => ({
+        types: [],
+        cities: []
+    }),
+    mounted(){
+        this.getData();
+    },
+    methods:{
+        getData(){
+            Axios.get('/api/get-types')
+                .then( res => (this.types = res.data.data));
+
+            Axios.get('/api/get-cities')
+                .then( res => (this.cities = res.data.data));
+
+            this.$nextTick(() => {
+                import('/assets/js/app.min.js?_v=20220601170047');
+            });
+        },
+    },
 }
 </script>
 

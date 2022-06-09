@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('type_id')->default(1);
             $table->unsignedBigInteger('workload')->default(0);
+            $table->unsignedBigInteger('waypoint_id');
             $table->integer('available_weight')->default(0);
             $table->integer('available_size')->default(0);
             $table->string('number')->default('-');
             $table->foreign('type_id')->references('id')->on('types');
+            $table->foreign('waypoint_id')->references('id')->on('waypoints');
             $table->timestamps();
         });
     }

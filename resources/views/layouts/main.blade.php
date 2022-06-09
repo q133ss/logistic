@@ -307,7 +307,10 @@
         </div>
     </div>
 </div>
-<script type="module" src="/assets/js/app.min.js?_v=20220601170047"></script>
 <script src="/js/app.js"></script>
+@if(Route::currentRouteName() != 'index')
+{{--    Исправляем ошибку v-for для главной. Смотрите компонент transport-find    --}}
+<script type="module" src="/assets/js/app.min.js?_v=20220601170047"></script>
+@endif
 </body>
 </html>
