@@ -18,6 +18,6 @@ class Car extends Model
     ];
 
     public function get_waypoint(){
-        return $this->hasOne(Waypoint::class, 'waypoint_id');
+        return $this->belongsTo(Waypoint::class, 'waypoint_id');
     }
 }

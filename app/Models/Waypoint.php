@@ -13,6 +13,6 @@ class Waypoint extends Model
         'passed'];
 
     public function get_cars(){
-        return $this->belongsTo(Car::class);
+        return $this->hasMany(Car::class);
     }
 }

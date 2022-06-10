@@ -7563,13 +7563,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "transport-find",
   data: function data() {
     return {
       types: [],
-      cities: []
+      cities: [],
+      //Поля из формы
+      type: "",
+      from: "",
+      to: "",
+      //Ответ после отправки
+      send_resp: [],
+      switcher: 1,
+      error: ""
     };
   },
   mounted: function mounted() {
@@ -7588,6 +7669,115 @@ __webpack_require__.r(__webpack_exports__);
       this.$nextTick(function () {
         __webpack_require__.e(/*! import() */ "public_assets_js_app_min_js__v_20220601170047").then(__webpack_require__.t.bind(__webpack_require__, /*! ../../../../assets/js/app.min.js?_v=20220601170047 */ "./public/assets/js/app.min.js?_v=20220601170047", 23));
       });
+    },
+    send: function send() {
+      var _this2 = this;
+
+      var from_select = document.querySelectorAll('.c_select-placeholder');
+      this.type = from_select[0].textContent, this.from = from_select[1].textContent, this.to = from_select[2].textContent;
+      Axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/get-data-from-form/' + this.type + '/' + this.from + '/' + this.to).then(function (res) {
+        return _this2.send_resp = res.data.data[0];
+      });
+      setTimeout(this.change, 1000);
+    },
+    change: function change() {
+      if (this.send_resp.length !== 0) {
+        this.switcher = 2;
+      } else {
+        //не найдено
+        this.error = "Не найдено";
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-found.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-found.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "transport-found",
+  data: {
+    gsds: ""
+  },
+  methods: {
+    test: function test() {
+      alert('Hello');
     }
   }
 });
@@ -7619,6 +7809,7 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('transport-find', (__webpack_require__(/*! ./components/transport-find.vue */ "./resources/js/components/transport-find.vue")["default"]));
+Vue.component('transport-found', (__webpack_require__(/*! ./components/transport-found.vue */ "./resources/js/components/transport-found.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -30152,6 +30343,45 @@ component.options.__file = "resources/js/components/transport-find.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/transport-found.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/transport-found.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _transport_found_vue_vue_type_template_id_17820563_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./transport-found.vue?vue&type=template&id=17820563&scoped=true& */ "./resources/js/components/transport-found.vue?vue&type=template&id=17820563&scoped=true&");
+/* harmony import */ var _transport_found_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transport-found.vue?vue&type=script&lang=js& */ "./resources/js/components/transport-found.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _transport_found_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _transport_found_vue_vue_type_template_id_17820563_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _transport_found_vue_vue_type_template_id_17820563_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "17820563",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/transport-found.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/transport-find.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/transport-find.vue?vue&type=script&lang=js& ***!
@@ -30165,6 +30395,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transport_find_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./transport-find.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-find.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transport_find_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/transport-found.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/transport-found.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transport_found_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./transport-found.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-found.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_transport_found_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -30185,6 +30431,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/transport-found.vue?vue&type=template&id=17820563&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/transport-found.vue?vue&type=template&id=17820563&scoped=true& ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_transport_found_vue_vue_type_template_id_17820563_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_transport_found_vue_vue_type_template_id_17820563_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_transport_found_vue_vue_type_template_id_17820563_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./transport-found.vue?vue&type=template&id=17820563&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-found.vue?vue&type=template&id=17820563&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-find.vue?vue&type=template&id=5062ab30&scoped=true&":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-find.vue?vue&type=template&id=5062ab30&scoped=true& ***!
@@ -30201,85 +30464,194 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ind-main__form" }, [
-    _c("p", { staticClass: "ind-main__form-i" }, [_vm._v("Поиск транспорта")]),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _c("p", { staticClass: "ind-main__form-a" }, [
-      _vm._v("Помощь в организации сборных грузов"),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "ind-main__form-type" }, [
-      _vm._m(1),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          staticClass: "c_select",
-          staticStyle: { display: "none" },
-          attrs: { id: "track_i", name: "sort" },
-        },
-        [
-          _c("option", [_vm._v("На чем будем везти")]),
+  return _c("div", {}, [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.switcher == 1,
+            expression: "switcher == 1",
+          },
+        ],
+        staticClass: "ind-main__form",
+      },
+      [
+        _c("p", { staticClass: "ind-main__form-i" }, [
+          _vm._v("Поиск транспорта"),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("p", { staticClass: "ind-main__form-a" }, [
+          _vm._v("Помощь в организации сборных грузов"),
+        ]),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass:
+              "service__info-a service__info-a__red service__info-a__yellow",
+          },
+          [_vm._v(_vm._s(this.error))]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "ind-main__form-type" }, [
+          _vm._m(1),
           _vm._v(" "),
-          _vm._l(_vm.types, function (type) {
-            return _c("option", { domProps: { value: type.id } }, [
-              _vm._v(_vm._s(type.name)),
+          _c(
+            "select",
+            {
+              staticClass: "c_select",
+              staticStyle: { display: "none" },
+              attrs: { id: "track_i", name: "sort" },
+            },
+            [
+              _c("option", [_vm._v("На чем будем везти")]),
+              _vm._v(" "),
+              _vm._l(_vm.types, function (type) {
+                return _c("option", { domProps: { value: type.id } }, [
+                  _vm._v(_vm._s(type.name)),
+                ])
+              }),
+            ],
+            2
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ind-main__form-type" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "c_select",
+              staticStyle: { display: "none" },
+              attrs: { id: "map_i ff", name: "sort" },
+            },
+            [
+              _c("option", [_vm._v("Начальная точка маршрута")]),
+              _vm._v(" "),
+              _vm._l(_vm.cities, function (city, key) {
+                return _c("option", { domProps: { value: city.id } }, [
+                  _vm._v(_vm._s(city.name)),
+                ])
+              }),
+            ],
+            2
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ind-main__form-type" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "c_select",
+              staticStyle: { display: "none" },
+              attrs: { id: "map_i", name: "sort" },
+            },
+            [
+              _c("option", [_vm._v("Конец маршрута")]),
+              _vm._v(" "),
+              _vm._l(_vm.cities, function (city, key) {
+                return _c("option", { domProps: { value: city.id } }, [
+                  _vm._v(_vm._s(city.name)),
+                ])
+              }),
+            ],
+            2
+          ),
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "ind-main__form-trns",
+            attrs: { type: "submit" },
+            on: {
+              click: function ($event) {
+                return _vm.send()
+              },
+            },
+          },
+          [
+            _c("p", [_vm._v("Найти транспорт")]),
+            _c("img", { attrs: { src: "", alt: "icons" } }),
+          ]
+        ),
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.switcher == 2,
+            expression: "switcher == 2",
+          },
+        ],
+        staticClass: "ind-main__forms",
+      },
+      [
+        _c("p", { staticClass: "ind-main__forms-i" }, [
+          _vm._v("Поиск транспорта"),
+        ]),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "ind-main__forms-l" },
+          _vm._l(_vm.send_resp, function (car) {
+            return _c("li", { staticClass: "ind-main__forms-e" }, [
+              _c("img", {
+                staticClass: "ind-main__forms-icon",
+                attrs: { src: "/assets/svg/index_two/car.svg", alt: "icons" },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "ind-main__forms-w" }, [
+                _c("div", { staticClass: "ind-main__forms-text" }, [
+                  _c("p", [_vm._v("Заполненность машины")]),
+                  _c("span", [_vm._v(_vm._s(car.number) + "%")]),
+                ]),
+                _vm._v(" "),
+                _vm._m(5, true),
+                _vm._v(" "),
+                _c("div", { staticClass: "ind-main__forms-info" }, [
+                  _vm._v("Доступно для загрузки"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "ind-main__forms-a" }, [
+                  _c("h5", [_vm._v("По весу:")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(car.available_weight))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "ind-main__forms-a" }, [
+                  _c("h5", [_vm._v("По объему:")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(car.available_size))]),
+                ]),
+              ]),
             ])
           }),
-        ],
-        2
-      ),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "ind-main__form-type" }, [
-      _vm._m(2),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          staticClass: "c_select",
-          staticStyle: { display: "none" },
-          attrs: { id: "map_i", name: "sort" },
-        },
-        [
-          _c("option", [_vm._v("Начальная точка маршрута")]),
-          _vm._v(" "),
-          _vm._l(_vm.cities, function (city, key) {
-            return _c("option", { domProps: { value: city.id } }, [
-              _vm._v(_vm._s(city.name)),
-            ])
-          }),
-        ],
-        2
-      ),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "ind-main__form-type" }, [
-      _vm._m(3),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          staticClass: "c_select",
-          staticStyle: { display: "none" },
-          attrs: { id: "map_i", name: "sort" },
-        },
-        [
-          _c("option", [_vm._v("Конец маршрута")]),
-          _vm._v(" "),
-          _vm._l(_vm.cities, function (city, key) {
-            return _c("option", { domProps: { value: city.id } }, [
-              _vm._v(_vm._s(city.name)),
-            ])
-          }),
-        ],
-        2
-      ),
-    ]),
-    _vm._v(" "),
-    _vm._m(4),
+          0
+        ),
+        _vm._v(" "),
+        _vm._m(6),
+        _vm._v(" "),
+        _vm._m(7),
+        _vm._v(" "),
+        _vm._m(8),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -30324,10 +30696,285 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "ind-main__form-trns" }, [
-      _c("p", [_vm._v("Найти транспорт")]),
-      _c("img", { attrs: { src: "", alt: "icons" } }),
+    return _c("h3", { staticClass: "ind-main__forms-t" }, [
+      _vm._v("Мы нашли для вас "),
+      _c("br"),
+      _vm._v("транспорт:"),
+      _c("span", [_vm._v("2 фуры")]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "ind-main__forms-p", attrs: { "data-progress": "45%" } },
+      [
+        _c("div", {
+          staticClass: "ind-main__forms-bar",
+          staticStyle: { width: "45%" },
+        }),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ind-main__forms-name" }, [
+      _c("label", { staticClass: "label", attrs: { for: "index__name" } }, [
+        _c("div", { staticClass: "ind-main__forms-n" }, [
+          _c("p", [_vm._v("Как вас зовут ")]),
+          _c("img", {
+            attrs: { src: "/assets/svg/index/help.svg", alt: "icons" },
+          }),
+        ]),
+        _c("img", {
+          staticClass: "ind-main__forms-name_m",
+          attrs: { src: "/assets/svg/index_two/user.svg", alt: "icons" },
+        }),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "text", id: "index__name", placeholder: "Ваше имя*" },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ind-main__forms-phone" }, [
+      _c("label", { staticClass: "label", attrs: { for: "index__phone" } }, [
+        _c("div", { staticClass: "ind-main__forms-ph" }, [
+          _c("p", [_vm._v("Куда ")]),
+          _c("img", {
+            attrs: { src: "/assets/svg/index/help.svg", alt: "icons" },
+          }),
+        ]),
+        _c("img", {
+          staticClass: "ind-main__forms-phone_m",
+          attrs: { src: "/assets/svg/index_two/phone.svg", alt: "icons" },
+        }),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            type: "text",
+            id: "index__phone",
+            placeholder: "Ваш телефон*",
+          },
+        }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "ind-main__forms-trns" }, [
+      _c("p", [_vm._v("Подать заявку")]),
+      _c("img", {
+        attrs: { src: "/assets/svg/index_two/chevron-right.svg", alt: "icons" },
+      }),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-found.vue?vue&type=template&id=17820563&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/transport-found.vue?vue&type=template&id=17820563&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "ind-main__forms", staticStyle: { display: "none" } },
+      [
+        _c("p", { staticClass: "ind-main__forms-i" }, [
+          _vm._v("Поиск транспорта"),
+        ]),
+        _vm._v(" "),
+        _c("h3", { staticClass: "ind-main__forms-t" }, [
+          _vm._v("Мы нашли для вас "),
+          _c("br"),
+          _vm._v("транспорт:"),
+          _c("span", [_vm._v("2 фуры")]),
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "ind-main__forms-l" }, [
+          _c("li", { staticClass: "ind-main__forms-e" }, [
+            _c("img", {
+              staticClass: "ind-main__forms-icon",
+              attrs: { src: "/assets/svg/index_two/car.svg", alt: "icons" },
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "ind-main__forms-w" }, [
+              _c("div", { staticClass: "ind-main__forms-text" }, [
+                _c("p", [_vm._v("Заполненность машины")]),
+                _c("span", [_vm._v("45%")]),
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "ind-main__forms-p",
+                  attrs: { "data-progress": "45%" },
+                },
+                [
+                  _c("div", {
+                    staticClass: "ind-main__forms-bar",
+                    staticStyle: { width: "45%" },
+                  }),
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "ind-main__forms-info" }, [
+                _vm._v("Доступно для загрузки"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ind-main__forms-a" }, [
+                _c("h5", [_vm._v("По весу:")]),
+                _vm._v(" "),
+                _c("p", [_vm._v("4 500кг")]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ind-main__forms-a" }, [
+                _c("h5", [_vm._v("По объему:")]),
+                _vm._v(" "),
+                _c("p", [_vm._v("25 м.куб")]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "ind-main__forms-e" }, [
+            _c("img", {
+              staticClass: "ind-main__forms-icon",
+              attrs: { src: "/assets/svg/index_two/traint.svg", alt: "icons" },
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "ind-main__forms-w" }, [
+              _c("div", { staticClass: "ind-main__forms-text" }, [
+                _c("p", [_vm._v("Заполненность машины")]),
+                _c("span", [_vm._v("99%")]),
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "ind-main__forms-p",
+                  attrs: { "data-progress": "99%" },
+                },
+                [
+                  _c("div", {
+                    staticClass: "ind-main__forms-bar",
+                    staticStyle: { width: "99%" },
+                  }),
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "ind-main__forms-info" }, [
+                _vm._v("Доступно для загрузки"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ind-main__forms-a" }, [
+                _c("h5", [_vm._v("По весу:")]),
+                _vm._v(" "),
+                _c("p", [_vm._v("4 500кг")]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ind-main__forms-a" }, [
+                _c("h5", [_vm._v("По объему:")]),
+                _vm._v(" "),
+                _c("p", [_vm._v("25 м.куб")]),
+              ]),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ind-main__forms-name" }, [
+          _c("label", { staticClass: "label", attrs: { for: "index__name" } }, [
+            _c("div", { staticClass: "ind-main__forms-n" }, [
+              _c("p", [_vm._v("Как вас зовут ")]),
+              _c("img", {
+                attrs: { src: "/assets/svg/index/help.svg", alt: "icons" },
+              }),
+            ]),
+            _c("img", {
+              staticClass: "ind-main__forms-name_m",
+              attrs: { src: "/assets/svg/index_two/user.svg", alt: "icons" },
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "text",
+                id: "index__name",
+                placeholder: "Ваше имя*",
+              },
+            }),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ind-main__forms-phone" }, [
+          _c(
+            "label",
+            { staticClass: "label", attrs: { for: "index__phone" } },
+            [
+              _c("div", { staticClass: "ind-main__forms-ph" }, [
+                _c("p", [_vm._v("Куда ")]),
+                _c("img", {
+                  attrs: { src: "/assets/svg/index/help.svg", alt: "icons" },
+                }),
+              ]),
+              _c("img", {
+                staticClass: "ind-main__forms-phone_m",
+                attrs: { src: "/assets/svg/index_two/phone.svg", alt: "icons" },
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  id: "index__phone",
+                  placeholder: "Ваш телефон*",
+                },
+              }),
+            ]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("button", { staticClass: "ind-main__forms-trns" }, [
+          _c("p", [_vm._v("Подать заявку")]),
+          _c("img", {
+            attrs: {
+              src: "/assets/svg/index_two/chevron-right.svg",
+              alt: "icons",
+            },
+          }),
+        ]),
+      ]
+    )
   },
 ]
 render._withStripped = true

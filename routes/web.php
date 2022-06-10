@@ -20,8 +20,3 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/fff', function (){
-    $c = App\Models\Car::first();
-    dd( $c->get_waypoint() );
-});

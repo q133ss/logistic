@@ -23,3 +23,6 @@ Route::get('/get-cities', [App\Http\Controllers\Api\v1\CityController::class, 'g
 Route::get('/get-city/{id}', [App\Http\Controllers\Api\v1\CityController::class, 'getCity']);
 Route::get('/get-types/', [App\Http\Controllers\Api\v1\TypeController::class, 'getTypes']);
 Route::get('/get-type/{id}', [App\Http\Controllers\Api\v1\TypeController::class, 'getType']);
+
+Route::post('/find-transport/{type_id}/{from_id}/{to_id}', [App\Http\Controllers\Api\v1\SearchController::class, 'findTransport']); //Поиск транспорта на главной
+Route::post('/get-data-from-form/{type}/{from}/{to}', [App\Http\Controllers\Api\v1\SearchController::class, 'findFromForm']);
