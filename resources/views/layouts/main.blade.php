@@ -22,6 +22,7 @@
 </header>
 <div id="app">
 @yield('content')
+    <register-form></register-form>
 </div>
 <footer class="footer"> </footer>
 <script>
@@ -102,61 +103,6 @@
             <div class="thx_request__i">Наши специалисты свяжутся с вами после обработки вашей заявки и уточнят детали</div>
             <button class="thx_request__close">
                 <p>Закрыть</p>
-            </button>
-        </div>
-    </div>
-</div>
-<div class="registration display-n">
-    <div class="registration__w">
-        <button class="registration__c"> <img src="/assets/svg/model/close.svg" alt="icons"></button>
-        <div class="registration__b">
-            <div class="registration__t">Регистрация<br>транспортной компании</div>
-            <label class="label registration__comp" for="reg__comp">
-                <p>Название компании</p><img src="/assets/svg/model/briefcase.svg" alt="icons">
-                <input type="text" id="reg__comp" placeholder="Название компании">
-            </label>
-            <label class="label registration__user" for="reg__user">
-                <p>Контактное лицо</p><img src="/assets/svg/model/user.svg" alt="icons">
-                <input type="text" id="reg__user" placeholder="Контактное лицо">
-            </label>
-            <label class="label registration__mail" for="reg__mail">
-                <p>Ваша почта</p><img src="/assets/svg/model/mail.svg" alt="icons">
-                <input type="text" id="reg__mail" placeholder="Ваша почта">
-            </label>
-            <label class="label registration__phone" for="reg__phone">
-                <p>Ваш телефон</p><img src="/assets/svg/model/phone.svg" alt="icons">
-                <input type="text" id="reg__phone" placeholder="Ваш телефон">
-            </label>
-            <div class="registration__block">
-                <label class="label registration__bin" for="reg__bin">
-                    <p>БИН</p><img src="/assets/svg/model/credit-card.svg" alt="icons">
-                    <input type="text" id="reg__bin" placeholder="БИН">
-                </label>
-                <label class="label registration__year" for="reg__year">
-                    <p>С какого года работаете?</p><img src="/assets/svg/model/calendar.svg" alt="icons">
-                    <input type="text" id="reg__year" placeholder="Ваш год">
-                </label>
-            </div>
-            <label class="label registration__address" for="reg__address">
-                <p>Ваш адрес</p><img src="/assets/svg/model/map.svg" alt="icons">
-                <textarea type="text" id="reg__address" placeholder="Ваш адрес"></textarea>
-            </label>
-            <label class="label registration__text" for="reg__text">
-                <p>Ваши реквизиты</p>
-                <textarea type="text" id="reg__text" placeholder="Ваши реквизиты"></textarea>
-            </label>
-            <div class="registration__block">
-                <label class="label registration__teng" for="reg__teng">
-                    <p>Счет в тенгэ</p><img src="/assets/svg/model/credit-card.svg" alt="icons">
-                    <input type="text" id="reg__teng" placeholder="Счет в тенгэ">
-                </label>
-                <label class="label registration__usd" for="reg__usd">
-                    <p>Счет в USD</p><img src="/assets/svg/model/credit-card.svg" alt="icons">
-                    <input type="text" id="reg__usd" placeholder="Счет в USD">
-                </label>
-            </div>
-            <button class="registration__submit">
-                <p>Зарегистрироваться</p><img src="/assets/svg/model/arrow-r.svg" alt="icons">
             </button>
         </div>
     </div>

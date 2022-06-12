@@ -20,7 +20,7 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('transport-find', require('./components/transport-find.vue').default);
-Vue.component('transport-found', require('./components/transport-found.vue').default);
+Vue.component('register-form', require('./components/register-form.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

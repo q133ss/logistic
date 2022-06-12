@@ -28,7 +28,7 @@ $(function () {
       $(".ind-main__forms-bar").eq(e - 1).css("width", "".concat($(".ind-main__forms-p").eq(e - 1).attr("data-progress")));
     }
   }, 500), $("#index__phone, #reg__phone").mask("+7 (999) 99-99-999");
-}), $(".registration__submit").on("click", function () {
+}), $(".registration__submit1").on("click", function () {
   $(".thx_request").removeClass("display-n"), $("body").css("overflow", "hidden");
 }), $(".thx_request__c, .thx_request__close").on("click", function () {
   $(".thx_request").addClass("display-n"), $("body").css("overflow", "visible");

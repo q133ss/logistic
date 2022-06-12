@@ -26,3 +26,6 @@ Route::get('/get-type/{id}', [App\Http\Controllers\Api\v1\TypeController::class,
 
 Route::post('/find-transport/{type_id}/{from_id}/{to_id}', [App\Http\Controllers\Api\v1\SearchController::class, 'findTransport']); //Поиск транспорта на главной
 Route::post('/get-data-from-form/{type}/{from}/{to}', [App\Http\Controllers\Api\v1\SearchController::class, 'findFromForm']);
+
+Route::post('/create-company', [\App\Http\Controllers\Api\v1\CompanyController::class, 'create']);
+Route::post('/create-user', [\App\Http\Controllers\Api\v1\UserController::class, 'create']);

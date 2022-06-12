@@ -14,11 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id')->default(1);
             $table->unsignedBigInteger('confirm');
-            $table->unsignedBigInteger('company_id')->nullable();
+            $table->string('company')->nullable();
+            $table->string('contact_face')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('bin')->nullable();
+            $table->string('year')->nullable(); //с какого года работаете
+            $table->string('requisites')->nullable();
+            $table->string('tenge_account')->nullable();
+            $table->string('usd_account')->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 

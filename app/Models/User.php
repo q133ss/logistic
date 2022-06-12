@@ -23,7 +23,14 @@ class User extends Authenticatable
         'password',
         'role_id',
         'confirm',
-        'company_id'
+        'company',
+        'contact_face',
+        'phone',
+        'bin',
+        'year',
+        'requisites',
+        'tenge_account',
+        'usd_account'
     ];
 
     /**
