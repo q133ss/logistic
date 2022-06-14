@@ -4,27 +4,7 @@
     <section class="company">
         <div class="containers">
             <div class="company__w">
-                <div class="menuCompany">
-                    <div class="menuCompany-tab"><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/truck.svg" alt="icons">
-                            <p>Добавить машину</p></a><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/map.svg" alt="icons">
-                            <p>Машины на маршрутах</p></a></div>
-                    <div class="menuCompany-info"><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/phone.svg" alt="icons">
-                            <p>Поддержка</p></a><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/bell.svg" alt="icons">
-                            <p>Уведомления <span>(20)</span></p></a><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/settings.svg" alt="icons">
-                            <p>Настройки</p></a></div>
-                    <button class="menuCompany-arrow"> <img src="/assets/svg/company/chevron-left.svg" alt="icons">
-                        <p>Свернуть панель</p>
-                    </button>
-                    <div class="menuCompany-hr"></div>
-                    <div class="menuCompany-profile">
-                        <div class="menuCompany-ph"> <picture><source srcset="/assets/img/Avatar.webp" type="image/webp"><img src="/assets/img/Avatar.png" alt="avatar"></picture></div>
-                        <div class="menuCompany-t">
-                            <h3>Сидоров Пафнутий</h3>
-                            <p>Pafnutiy.Sidoroff@gmail.com</p>
-                        </div>
-                        <button class="menuCompany-logout"><img src="/assets/svg/company/log-out.svg" alt="icons"></button>
-                    </div>
-                </div>
+                @include('company.menu')
                 <form action="{{route('company.create.car')}}" method="POST">
                     @csrf
                 <div class="company__search">
@@ -32,12 +12,12 @@
                     <div class="company__search-t">Добавить свободный транспорт</div>
                     <div class="company__search-b">
                         <div class="company__search-type">
-                            @if($errors)
-                                <h5 style="color:red">Заполните все необходимые поля</h5>
-                            @endif
                             <div class="company__search-h">
                                 <p>Добавить транстпорт</p><img src="/assets/svg/index/help.svg" alt="icons">
                             </div>
+                            @if($errors->count() != 0)
+                                <h5 style="color:red">Заполните все необходимые поля</h5>
+                            @endif
                             <select required class="c_select" id="track_i" name="type" style="display: none">
                                 <option>На чем будем везти</option>
                                 @foreach($types as $key => $type)

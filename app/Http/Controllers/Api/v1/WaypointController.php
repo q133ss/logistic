@@ -33,7 +33,7 @@ class WaypointController extends Controller
 
     public function update($id, Request $request){
         $validated = $request->validate([
-            'car_status_id' => 'int',
+            'car_status_id' => '',
             'passed' => 'max:100',
             'available_weight' => 'max:100',
             'available_size' => 'max:100'
