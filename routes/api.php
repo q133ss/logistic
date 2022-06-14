@@ -29,3 +29,10 @@ Route::post('/get-data-from-form/{type}/{from}/{to}', [App\Http\Controllers\Api\
 
 Route::post('/create-company', [\App\Http\Controllers\Api\v1\CompanyController::class, 'create']);
 Route::post('/create-user', [\App\Http\Controllers\Api\v1\UserController::class, 'create']);
+
+Route::get('/get-waypoint-data/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_data']);
+Route::get('/get-statuses', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_statuses']);
+Route::get('/get-status/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_status']);
+
+Route::post('/update-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'update']);
+Route::delete('/delete-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'delete']);

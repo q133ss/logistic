@@ -7854,15 +7854,16 @@ __webpack_require__.r(__webpack_exports__);
       var from_select = document.querySelectorAll('.c_select-placeholder');
       this.type = from_select[0].textContent, this.from = from_select[1].textContent, this.to = from_select[2].textContent;
       Axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/get-data-from-form/' + this.type + '/' + this.from + '/' + this.to).then(function (res) {
-        return _this2.send_resp = res.data.data[0];
+        return _this2.send_resp = res.data.data;
       });
       setTimeout(this.change, 1000);
     },
     change: function change() {
-      if (this.send_resp.length !== 0) {
+      //console.log(this.send_resp);
+      if (this.send_resp != null && this.send_resp.length !== 0) {
         this.switcher = 2;
+        err = false;
       } else {
-        //не найдено
         this.error = "Не найдено";
       }
     }
@@ -31159,7 +31160,12 @@ var render = function () {
           _vm._v("Поиск транспорта"),
         ]),
         _vm._v(" "),
-        _vm._m(4),
+        _c("h3", { staticClass: "ind-main__forms-t" }, [
+          _vm._v("Мы нашли для вас "),
+          _c("br"),
+          _vm._v("транспорт:"),
+          _c("span", [_vm._v(_vm._s(_vm.send_resp.length) + " фуры")]),
+        ]),
         _vm._v(" "),
         _c(
           "ul",
@@ -31177,7 +31183,19 @@ var render = function () {
                   _c("span", [_vm._v(_vm._s(car.number) + "%")]),
                 ]),
                 _vm._v(" "),
-                _vm._m(5, true),
+                _c(
+                  "div",
+                  {
+                    staticClass: "ind-main__forms-p",
+                    attrs: { "data-progress": car.number + "%" },
+                  },
+                  [
+                    _c("div", {
+                      staticClass: "ind-main__forms-bar",
+                      style: "width:" + car.number + "%;",
+                    }),
+                  ]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "ind-main__forms-info" }, [
                   _vm._v("Доступно для загрузки"),
@@ -31200,11 +31218,11 @@ var render = function () {
           0
         ),
         _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
         _vm._m(6),
-        _vm._v(" "),
-        _vm._m(7),
-        _vm._v(" "),
-        _vm._m(8),
       ]
     ),
   ])
@@ -31246,32 +31264,6 @@ var staticRenderFns = [
       _c("p", [_vm._v("Куда")]),
       _c("img", { attrs: { src: "/assets/svg/index/help.svg", alt: "icons" } }),
     ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "ind-main__forms-t" }, [
-      _vm._v("Мы нашли для вас "),
-      _c("br"),
-      _vm._v("транспорт:"),
-      _c("span", [_vm._v("2 фуры")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "ind-main__forms-p", attrs: { "data-progress": "45%" } },
-      [
-        _c("div", {
-          staticClass: "ind-main__forms-bar",
-          staticStyle: { width: "45%" },
-        }),
-      ]
-    )
   },
   function () {
     var _vm = this

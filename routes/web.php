@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('company')->middleware(['auth'])->group(function(){
+    Route::get('/', [\App\Http\Controllers\Company\IndexController::class, 'index']);
+    Route::post('/add-car', [\App\Http\Controllers\Company\IndexController::class, 'create'])->name('company.create.car');
+    Route::get('/waypoints', [\App\Http\Controllers\Company\IndexController::class, 'waypoints'])->name('company.waypoints');
+});

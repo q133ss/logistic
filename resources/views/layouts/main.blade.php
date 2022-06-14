@@ -115,30 +115,30 @@
                 <div class="info_car__t">Машина в пути</div>
                 <div class="info_car__e">
                     <h5>Дата оправления:</h5>
-                    <p>25.06.2022</p>
+                    <p id="date_of_dep">25.06.2022</p>
                 </div>
                 <div class="info_car__e">
                     <h5>Время в пути:</h5>
-                    <p>2 дня</p>
+                    <p id="time_on_travel">2 дня</p>
                 </div>
                 <div class="info_car__e">
                     <h5>Дата прибытия:</h5>
-                    <p>27.06.2022</p>
+                    <p id="date_of_arr">27.06.2022</p>
                 </div>
             </li>
             <li class="info_car__i">
                 <div class="info_car__t">Данные по грузу</div>
                 <div class="info_car__e">
                     <h5>Вес:</h5>
-                    <p>4500 кг</p>
+                    <p id="data_of_weight">4500 кг</p>
                 </div>
                 <div class="info_car__e">
                     <h5>Объем:</h5>
-                    <p>20 м.куб</p>
+                    <p id="data_of_size">20 м.куб</p>
                 </div>
                 <div class="info_car__e">
                     <h5>Кол-во упаковок:</h5>
-                    <p>25 шт.</p>
+                    <p id="data_of_qty">25 шт.</p>
                 </div>
             </li>
         </ul>
@@ -159,45 +159,7 @@
         </div>
     </div>
 </div>
-<div class="status display-n">
-    <div class="status__w">
-        <button class="status__c"> <img src="/assets/svg/model/close.svg" alt="icons"></button>
-        <div class="status__b">
-            <div class="status__type">
-                <div class="status__h">
-                    <p>Статус машины</p><img src="/assets/svg/index/help.svg" alt="icons">
-                </div>
-                <select class="c_select" id="track_i" name="sort" style="display: none">
-                    <option>Загружается</option>
-                    <option value="default" selected="">ЖД</option>
-                    <option value="element_2">Авто</option>
-                    <option value="element_3">Авто</option>
-                    <option value="element_4">Авто</option>
-                    <option value="element_5">Авто</option>
-                    <option value="element_6">Авто</option>
-                    <option value="element_7">Авто</option>
-                </select>
-            </div>
-            <label class="label status__path" for="reg__mail">
-                <p>Пройдено по маршруту</p><img src="/assets/svg/model/maps.svg" alt="icons">
-                <input type="text" id="reg__mail" placeholder="км">
-            </label>
-            <div class="status__block">
-                <label class="label status__kg" for="reg__teng">
-                    <p>Осталось по весу, кг</p><img src="/assets/svg/model/credit-card.svg" alt="icons">
-                    <input type="text" id="reg__teng" placeholder="кг">
-                </label>
-                <label class="label status__cub" for="reg__usd">
-                    <p>Остаток объем, м.куб</p><img src="/assets/svg/model/credit-card.svg" alt="icons">
-                    <input type="text" id="reg__usd" placeholder="м.куб">
-                </label>
-            </div>
-            <button class="status__submit">
-                <p>Обновить статус</p>
-            </button>
-        </div>
-    </div>
-</div>
+
 <div class="info display-n">
     <div class="info__w">
         <button class="info__c"> <img src="/assets/svg/model/close.svg" alt="icons"></button>
@@ -254,6 +216,17 @@
     </div>
 </div>
 <script src="/js/app.js"></script>
+@yield('scripts')
+
+<script>
+    $('.delete-btn').click(function (){
+        let res = confirm('Вы уверенны?');
+        if(!res){
+            return false;
+        }
+    });
+</script>
+
 @if(Route::currentRouteName() != 'index')
 {{--    Исправляем ошибку v-for для главной. Смотрите компонент transport-find    --}}
 <script type="module" src="/assets/js/app.min.js?_v=20220601170047"></script>

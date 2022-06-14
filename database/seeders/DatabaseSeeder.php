@@ -64,9 +64,10 @@ class DatabaseSeeder extends Seeder
             \App\Models\Type::create(['name' => $type]);
         }
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $statuses = ['Загружается', 'В пути', 'Завершенно', 'Отменен'];
+
+        foreach ($statuses as $status){
+            \App\Models\Status::create(['name' => $status]);
+        }
     }
 }
