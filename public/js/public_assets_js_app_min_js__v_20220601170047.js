@@ -42,8 +42,6 @@ $(function () {
 }), $(".registration").mouseup(function (e) {
   var c = $(".registration__w");
   c.is(e.target) || 0 !== c.has(e.target).length || ($(".registration").addClass("display-n"), $("body").css("overflow", "visible"));
-}), $(".company__list-show").on("click", function () {
-  $(".info_car").removeClass("display-n"), $("body").css("overflow", "hidden");
 }), $(".info_car__c").on("click", function () {
   $(".info_car").addClass("display-n"), $("body").css("overflow", "visible");
 }), $(".info_car").mouseup(function (e) {
@@ -56,8 +54,6 @@ $(function () {
 }), $(".addClient").mouseup(function (e) {
   var c = $(".addClient__w");
   c.is(e.target) || 0 !== c.has(e.target).length || ($(".addClient").addClass("display-n"), $("body").css("overflow", "visible"));
-}), $(".company__list-more").on("click", function () {
-  $(".status").removeClass("display-n"), $("body").css("overflow", "hidden");
 }), $(".status__c").on("click", function () {
   $(".status").addClass("display-n"), $("body").css("overflow", "visible");
 }), $(".status").mouseup(function (e) {

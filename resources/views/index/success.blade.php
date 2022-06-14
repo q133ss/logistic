@@ -35,7 +35,11 @@
                         </li>
                     </ul>
                 </div>
-                <transport-find></transport-find>
+
+                <div class="ind-main__forms">
+                    <h3 class="ind-main__forms-t">Ваша заявка отправлена, спасибо!</h3>
+                </div>
+
             </div>
         </div>
     </section>

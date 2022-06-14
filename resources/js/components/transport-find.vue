@@ -2,7 +2,7 @@
     <div class="">
 
 
-        <div class="ind-main__form" v-show="switcher == 1">
+        <div class="ind-main__form" v-if="switcher == 1">
             <p class="ind-main__form-i">Поиск транспорта</p>
             <h3 class="ind-main__form-t">Подберем транспорт для<br>вашего груза </h3>
             <p class="ind-main__form-a">Помощь в организации сборных грузов</p>
@@ -40,49 +40,48 @@
         </div>
 
         <!--||||-->
-
-        <div class="ind-main__forms" v-show="switcher == 2">
+        <div class="ind-main__forms" v-if="switcher == 2">
             <p class="ind-main__forms-i">Поиск транспорта</p>
-            <h3 class="ind-main__forms-t">Мы нашли для вас <br>транспорт:<span>{{send_resp.length}} фуры</span></h3>
+            <h3 class="ind-main__forms-t">Мы нашли для вас <br>транспорт:<span>2 фуры</span></h3>
             <ul class="ind-main__forms-l">
-                <li class="ind-main__forms-e" v-for="car in send_resp"><img class="ind-main__forms-icon" src="/assets/svg/index_two/car.svg" alt="icons">
+                <li class="ind-main__forms-e"><img class="ind-main__forms-icon" src="/assets/svg/index_two/car.svg" alt="icons">
                     <div class="ind-main__forms-w">
                         <div class="ind-main__forms-text">
-                            <p>Заполненность машины</p><span>{{car.number}}%</span>
+                            <p>Заполненность машины</p><span>45%</span>
                         </div>
-                        <div class="ind-main__forms-p" :data-progress="car.number+'%'">
-                            <div class="ind-main__forms-bar" :style="'width:'+car.number+'%;'"></div>
+                        <div class="ind-main__forms-p" data-progress="45%">
+                            <div class="ind-main__forms-bar" style="width: 45%;"></div>
                         </div>
                         <div class="ind-main__forms-info">Доступно для загрузки</div>
                         <div class="ind-main__forms-a">
                             <h5>По весу:</h5>
-                            <p>{{car.available_weight}}</p>
+                            <p>4 500кг</p>
                         </div>
                         <div class="ind-main__forms-a">
                             <h5>По объему:</h5>
-                            <p>{{car.available_size}}</p>
+                            <p>25 м.куб</p>
                         </div>
                     </div>
                 </li>
-                <!--                <li class="ind-main__forms-e"><img class="ind-main__forms-icon" src="/assets/svg/index_two/traint.svg" alt="icons">-->
-                <!--                    <div class="ind-main__forms-w">-->
-                <!--                        <div class="ind-main__forms-text">-->
-                <!--                            <p>Заполненность машины</p><span>99%</span>-->
-                <!--                        </div>-->
-                <!--                        <div class="ind-main__forms-p" data-progress="99%">-->
-                <!--                            <div class="ind-main__forms-bar" style="width: 99%;"></div>-->
-                <!--                        </div>-->
-                <!--                        <div class="ind-main__forms-info">Доступно для загрузки</div>-->
-                <!--                        <div class="ind-main__forms-a">-->
-                <!--                            <h5>По весу:</h5>-->
-                <!--                            <p>4 500кг</p>-->
-                <!--                        </div>-->
-                <!--                        <div class="ind-main__forms-a">-->
-                <!--                            <h5>По объему:</h5>-->
-                <!--                            <p>25 м.куб</p>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </li>-->
+                <li class="ind-main__forms-e"><img class="ind-main__forms-icon" src="/assets/svg/index_two/traint.svg" alt="icons">
+                    <div class="ind-main__forms-w">
+                        <div class="ind-main__forms-text">
+                            <p>Заполненность машины</p><span>99%</span>
+                        </div>
+                        <div class="ind-main__forms-p" data-progress="99%">
+                            <div class="ind-main__forms-bar" style="width: 99%;"></div>
+                        </div>
+                        <div class="ind-main__forms-info">Доступно для загрузки</div>
+                        <div class="ind-main__forms-a">
+                            <h5>По весу:</h5>
+                            <p>4 500кг</p>
+                        </div>
+                        <div class="ind-main__forms-a">
+                            <h5>По объему:</h5>
+                            <p>25 м.куб</p>
+                        </div>
+                    </div>
+                </li>
             </ul>
             <div class="ind-main__forms-name">
                 <label class="label" for="index__name">
@@ -105,7 +104,6 @@
             </button>
         </div>
 
-
     </div>
 </template>
 
@@ -124,7 +122,8 @@ export default {
         //Ответ после отправки
         send_resp: [],
         switcher: 1,
-        error: ""
+        error: "",
+        car_id: ""
     }),
     mounted(){
         this.getData();
@@ -143,22 +142,20 @@ export default {
         },
         send(){
             let from_select = document.querySelectorAll('.c_select-placeholder');
-            this.type = from_select[0].textContent,
-                this.from = from_select[1].textContent,
-                this.to = from_select[2].textContent
+
+            this.type = from_select[0].textContent;
+            this.from = from_select[1].textContent;
+            this.to = from_select[2].textContent;
 
             Axios.post('/api/get-data-from-form/'+this.type+'/'+this.from+'/'+this.to)
                 .then( res => (this.send_resp = res.data.data));
-            setTimeout(this.change, 1000);
+            console.log(this.send_resp)
+            this.send_repeat();
         },
-        change(){
-            //console.log(this.send_resp);
-            if(this.send_resp != null && this.send_resp.length !== 0 ) {
-                this.switcher = 2;
-                err = false;
-            }else{
-                this.error = "Не найдено";
-            }
+        send_repeat(){
+            Axios.post('/api/get-data-from-form/'+this.type+'/'+this.from+'/'+this.to)
+                .then( res => (this.send_resp = res.data.data));
+            console.log(this.send_resp);
         }
     },
 }

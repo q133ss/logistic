@@ -13,18 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
+Route::post('/', [\App\Http\Controllers\IndexController::class, 'find'])->name('index.find.transport');
+Route::post('/send', [\App\Http\Controllers\IndexController::class, 'send'])->name('index.send.form');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('company')->middleware(['auth'])->group(function(){
-    Route::get('/', [\App\Http\Controllers\Company\IndexController::class, 'index'])->name('company.index');
-    Route::post('/add-car', [\App\Http\Controllers\Company\IndexController::class, 'create'])->name('company.create.car');
-    Route::get('/waypoints', [\App\Http\Controllers\Company\IndexController::class, 'waypoints'])->name('company.waypoints');
+Route::prefix('company')->name('company.')->middleware(['auth'])->group(function(){
+    Route::get('/', [\App\Http\Controllers\Company\IndexController::class, 'index'])->name('index');
+    Route::post('/add-car', [\App\Http\Controllers\Company\IndexController::class, 'create'])->name('create.car');
+    Route::get('/waypoints', [\App\Http\Controllers\Company\IndexController::class, 'waypoints'])->name('waypoints');
+});
+
+Route::prefix('client')->name('client.')->middleware(['auth'])->group(function(){
+    Route::get('/', [\App\Http\Controllers\Client\IndexController::class, 'index'])->name('index');
+    Route::post('/get-car', [\App\Http\Controllers\Client\IndexController::class, 'get'])->name('get.car');
+    Route::post('/send-order', [\App\Http\Controllers\Client\IndexController::class, 'send'])->name('send.order');
+    Route::get('/orders', [\App\Http\Controllers\Client\IndexController::class, 'orders'])->name('orders');
 });
 
 Route::post('/logout', function (){

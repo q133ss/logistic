@@ -7812,8 +7812,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "transport-find",
@@ -7828,7 +7826,8 @@ __webpack_require__.r(__webpack_exports__);
       //Ответ после отправки
       send_resp: [],
       switcher: 1,
-      error: ""
+      error: "",
+      car_id: ""
     };
   },
   mounted: function mounted() {
@@ -7852,20 +7851,22 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var from_select = document.querySelectorAll('.c_select-placeholder');
-      this.type = from_select[0].textContent, this.from = from_select[1].textContent, this.to = from_select[2].textContent;
+      this.type = from_select[0].textContent;
+      this.from = from_select[1].textContent;
+      this.to = from_select[2].textContent;
       Axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/get-data-from-form/' + this.type + '/' + this.from + '/' + this.to).then(function (res) {
         return _this2.send_resp = res.data.data;
       });
-      setTimeout(this.change, 1000);
+      console.log(this.send_resp);
+      this.send_repeat();
     },
-    change: function change() {
-      //console.log(this.send_resp);
-      if (this.send_resp != null && this.send_resp.length !== 0) {
-        this.switcher = 2;
-        err = false;
-      } else {
-        this.error = "Не найдено";
-      }
+    send_repeat: function send_repeat() {
+      var _this3 = this;
+
+      Axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/get-data-from-form/' + this.type + '/' + this.from + '/' + this.to).then(function (res) {
+        return _this3.send_resp = res.data.data;
+      });
+      console.log(this.send_resp);
     }
   }
 });
@@ -31021,210 +31022,132 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {}, [
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.switcher == 1,
-            expression: "switcher == 1",
-          },
-        ],
-        staticClass: "ind-main__form",
-      },
-      [
-        _c("p", { staticClass: "ind-main__form-i" }, [
-          _vm._v("Поиск транспорта"),
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("p", { staticClass: "ind-main__form-a" }, [
-          _vm._v("Помощь в организации сборных грузов"),
-        ]),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass:
-              "service__info-a service__info-a__red service__info-a__yellow",
-          },
-          [_vm._v(_vm._s(this.error))]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "ind-main__form-type" }, [
-          _vm._m(1),
+    _vm.switcher == 1
+      ? _c("div", { staticClass: "ind-main__form" }, [
+          _c("p", { staticClass: "ind-main__form-i" }, [
+            _vm._v("Поиск транспорта"),
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("p", { staticClass: "ind-main__form-a" }, [
+            _vm._v("Помощь в организации сборных грузов"),
+          ]),
           _vm._v(" "),
           _c(
-            "select",
+            "p",
             {
-              staticClass: "c_select",
-              staticStyle: { display: "none" },
-              attrs: { id: "track_i", name: "sort" },
+              staticClass:
+                "service__info-a service__info-a__red service__info-a__yellow",
             },
-            [
-              _c("option", [_vm._v("На чем будем везти")]),
-              _vm._v(" "),
-              _vm._l(_vm.types, function (type) {
-                return _c("option", { domProps: { value: type.id } }, [
-                  _vm._v(_vm._s(type.name)),
-                ])
-              }),
-            ],
-            2
+            [_vm._v(_vm._s(this.error))]
           ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ind-main__form-type" }, [
-          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__form-type" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "c_select",
+                staticStyle: { display: "none" },
+                attrs: { id: "track_i", name: "sort" },
+              },
+              [
+                _c("option", [_vm._v("На чем будем везти")]),
+                _vm._v(" "),
+                _vm._l(_vm.types, function (type) {
+                  return _c("option", { domProps: { value: type.id } }, [
+                    _vm._v(_vm._s(type.name)),
+                  ])
+                }),
+              ],
+              2
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__form-type" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "c_select",
+                staticStyle: { display: "none" },
+                attrs: { id: "map_i ff", name: "sort" },
+              },
+              [
+                _c("option", [_vm._v("Начальная точка маршрута")]),
+                _vm._v(" "),
+                _vm._l(_vm.cities, function (city, key) {
+                  return _c("option", { domProps: { value: city.id } }, [
+                    _vm._v(_vm._s(city.name)),
+                  ])
+                }),
+              ],
+              2
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__form-type" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                staticClass: "c_select",
+                staticStyle: { display: "none" },
+                attrs: { id: "map_i", name: "sort" },
+              },
+              [
+                _c("option", [_vm._v("Конец маршрута")]),
+                _vm._v(" "),
+                _vm._l(_vm.cities, function (city, key) {
+                  return _c("option", { domProps: { value: city.id } }, [
+                    _vm._v(_vm._s(city.name)),
+                  ])
+                }),
+              ],
+              2
+            ),
+          ]),
           _vm._v(" "),
           _c(
-            "select",
+            "button",
             {
-              staticClass: "c_select",
-              staticStyle: { display: "none" },
-              attrs: { id: "map_i ff", name: "sort" },
-            },
-            [
-              _c("option", [_vm._v("Начальная точка маршрута")]),
-              _vm._v(" "),
-              _vm._l(_vm.cities, function (city, key) {
-                return _c("option", { domProps: { value: city.id } }, [
-                  _vm._v(_vm._s(city.name)),
-                ])
-              }),
-            ],
-            2
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ind-main__form-type" }, [
-          _vm._m(3),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              staticClass: "c_select",
-              staticStyle: { display: "none" },
-              attrs: { id: "map_i", name: "sort" },
-            },
-            [
-              _c("option", [_vm._v("Конец маршрута")]),
-              _vm._v(" "),
-              _vm._l(_vm.cities, function (city, key) {
-                return _c("option", { domProps: { value: city.id } }, [
-                  _vm._v(_vm._s(city.name)),
-                ])
-              }),
-            ],
-            2
-          ),
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "ind-main__form-trns",
-            attrs: { type: "submit" },
-            on: {
-              click: function ($event) {
-                return _vm.send()
+              staticClass: "ind-main__form-trns",
+              attrs: { type: "submit" },
+              on: {
+                click: function ($event) {
+                  return _vm.send()
+                },
               },
             },
-          },
-          [
-            _c("p", [_vm._v("Найти транспорт")]),
-            _c("img", { attrs: { src: "", alt: "icons" } }),
-          ]
-        ),
-      ]
-    ),
+            [
+              _c("p", [_vm._v("Найти транспорт")]),
+              _c("img", { attrs: { src: "", alt: "icons" } }),
+            ]
+          ),
+        ])
+      : _vm._e(),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.switcher == 2,
-            expression: "switcher == 2",
-          },
-        ],
-        staticClass: "ind-main__forms",
-      },
-      [
-        _c("p", { staticClass: "ind-main__forms-i" }, [
-          _vm._v("Поиск транспорта"),
-        ]),
-        _vm._v(" "),
-        _c("h3", { staticClass: "ind-main__forms-t" }, [
-          _vm._v("Мы нашли для вас "),
-          _c("br"),
-          _vm._v("транспорт:"),
-          _c("span", [_vm._v(_vm._s(_vm.send_resp.length) + " фуры")]),
-        ]),
-        _vm._v(" "),
-        _c(
-          "ul",
-          { staticClass: "ind-main__forms-l" },
-          _vm._l(_vm.send_resp, function (car) {
-            return _c("li", { staticClass: "ind-main__forms-e" }, [
-              _c("img", {
-                staticClass: "ind-main__forms-icon",
-                attrs: { src: "/assets/svg/index_two/car.svg", alt: "icons" },
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "ind-main__forms-w" }, [
-                _c("div", { staticClass: "ind-main__forms-text" }, [
-                  _c("p", [_vm._v("Заполненность машины")]),
-                  _c("span", [_vm._v(_vm._s(car.number) + "%")]),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "ind-main__forms-p",
-                    attrs: { "data-progress": car.number + "%" },
-                  },
-                  [
-                    _c("div", {
-                      staticClass: "ind-main__forms-bar",
-                      style: "width:" + car.number + "%;",
-                    }),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "ind-main__forms-info" }, [
-                  _vm._v("Доступно для загрузки"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "ind-main__forms-a" }, [
-                  _c("h5", [_vm._v("По весу:")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(car.available_weight))]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "ind-main__forms-a" }, [
-                  _c("h5", [_vm._v("По объему:")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(car.available_size))]),
-                ]),
-              ]),
-            ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _vm._m(4),
-        _vm._v(" "),
-        _vm._m(5),
-        _vm._v(" "),
-        _vm._m(6),
-      ]
-    ),
+    _vm.switcher == 2
+      ? _c("div", { staticClass: "ind-main__forms" }, [
+          _c("p", { staticClass: "ind-main__forms-i" }, [
+            _vm._v("Поиск транспорта"),
+          ]),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _vm._m(5),
+          _vm._v(" "),
+          _vm._m(6),
+          _vm._v(" "),
+          _vm._m(7),
+          _vm._v(" "),
+          _vm._m(8),
+        ])
+      : _vm._e(),
   ])
 }
 var staticRenderFns = [
@@ -31263,6 +31186,111 @@ var staticRenderFns = [
     return _c("div", { staticClass: "ind-main__form-h" }, [
       _c("p", [_vm._v("Куда")]),
       _c("img", { attrs: { src: "/assets/svg/index/help.svg", alt: "icons" } }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "ind-main__forms-t" }, [
+      _vm._v("Мы нашли для вас "),
+      _c("br"),
+      _vm._v("транспорт:"),
+      _c("span", [_vm._v("2 фуры")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "ind-main__forms-l" }, [
+      _c("li", { staticClass: "ind-main__forms-e" }, [
+        _c("img", {
+          staticClass: "ind-main__forms-icon",
+          attrs: { src: "/assets/svg/index_two/car.svg", alt: "icons" },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "ind-main__forms-w" }, [
+          _c("div", { staticClass: "ind-main__forms-text" }, [
+            _c("p", [_vm._v("Заполненность машины")]),
+            _c("span", [_vm._v("45%")]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "ind-main__forms-p",
+              attrs: { "data-progress": "45%" },
+            },
+            [
+              _c("div", {
+                staticClass: "ind-main__forms-bar",
+                staticStyle: { width: "45%" },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__forms-info" }, [
+            _vm._v("Доступно для загрузки"),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__forms-a" }, [
+            _c("h5", [_vm._v("По весу:")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("4 500кг")]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__forms-a" }, [
+            _c("h5", [_vm._v("По объему:")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("25 м.куб")]),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "ind-main__forms-e" }, [
+        _c("img", {
+          staticClass: "ind-main__forms-icon",
+          attrs: { src: "/assets/svg/index_two/traint.svg", alt: "icons" },
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "ind-main__forms-w" }, [
+          _c("div", { staticClass: "ind-main__forms-text" }, [
+            _c("p", [_vm._v("Заполненность машины")]),
+            _c("span", [_vm._v("99%")]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "ind-main__forms-p",
+              attrs: { "data-progress": "99%" },
+            },
+            [
+              _c("div", {
+                staticClass: "ind-main__forms-bar",
+                staticStyle: { width: "99%" },
+              }),
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__forms-info" }, [
+            _vm._v("Доступно для загрузки"),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__forms-a" }, [
+            _c("h5", [_vm._v("По весу:")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("4 500кг")]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ind-main__forms-a" }, [
+            _c("h5", [_vm._v("По объему:")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("25 м.куб")]),
+          ]),
+        ]),
+      ]),
     ])
   },
   function () {

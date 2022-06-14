@@ -10,10 +10,6 @@ class FindTransportService{
 
     public function find($type, $from, $to){
         $waypoints = Waypoint::where('departure_city_id', $from)->where('arrival_city_id', $to)->where('type_id', $type)->get();
-        if($waypoints->count() > 0){
-            return ['data' => collect($waypoints)];
-        }else{
-            return response()->json('Not found');
-        }
+        return ['data' => collect($waypoints)];
     }
 }

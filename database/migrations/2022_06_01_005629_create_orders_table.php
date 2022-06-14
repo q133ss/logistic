@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('waypoint_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('name');
             $table->string('phone');
-            $table->foreign('company_id')->references('id')->on('users'); //компании привязанные к юзеру
+            $table->foreign('waypoint_id')->references('id')->on('waypoints'); //компании привязанные к юзеру
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
