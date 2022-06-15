@@ -55,13 +55,13 @@
                             <div class="company__search-text">
                                 <p>Объем, м.куб </p><img src="/assets/svg/company/help.svg" alt="icons">
                             </div>
-                            <input required type="text" name="size" id="company__one" placeholder="м.куб">
+                            <input required type="text" name="size" id="company__one" placeholder="24 м.куб">
                         </label>
                         <label class="company__search-e label" for="company__two">
                             <div class="company__search-text">
                                 <p>Грузоподъемность, кг</p><img src="/assets/svg/company/help.svg" alt="icons">
                             </div>
-                            <input required type="text" name="weight" id="company__two" placeholder="кг">
+                            <input required type="text" name="weight" id="company__two" placeholder="500 кг">
                         </label>
                         <label class="company__search-e label" for="company__three">
                             <div class="company__search-text">

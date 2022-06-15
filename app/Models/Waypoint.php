@@ -31,4 +31,12 @@ class Waypoint extends Model
     public function get_status(){
         return $this->hasOne(Status::class, 'id', 'car_status_id');
     }
+
+    public function get_users(){
+        return $this->belongsToMany(User::class, 'waypoint_user');
+    }
+
+    public function get_phones(){
+        return $this->hasMany(OrderPhone::class);
+    }
 }

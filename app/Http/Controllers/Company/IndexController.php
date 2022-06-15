@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Company;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\City;
+use App\Models\OrderPhone;
 use App\Models\Status;
 use App\Models\Type;
 use App\Models\Waypoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -38,5 +40,14 @@ class IndexController extends Controller
         $waypoints = Auth()->user()->get_waypoints;
         $statuses = Status::all();
         return view('company.waypoints', compact('waypoints', 'statuses'));
+    }
+
+    public function addClient(Request $request){
+        $validated = $request->validate([
+            'phone' => 'required|max:80',
+            'waypoint_id' => 'int'
+        ]);
+        OrderPhone::create($validated);
+        return back();
     }
 }

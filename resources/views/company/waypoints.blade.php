@@ -44,7 +44,7 @@
                         <div class="company__list-just">
                             <button class="company__list-show" onclick="get_waypoint_data('{{$waypoint->id}}')"> <img src="/assets/svg/company/eye.svg" alt="icons"></button>
                             <button class="company__list-more" onclick="get_waypoint_status('{{$waypoint->id}}')"> <img src="/assets/svg/company/more.svg" alt="icons"></button>
-                            <button class="company__list-users">
+                            <button class="company__list-users" onclick="get_order_id('{{$waypoint->id}}')">
                                 <ul class="selectTwo display-n">
                                     <li class="selectTwo__i selectTwo__i-add">Добавить клиента к машине</li>
                                     <li class="selectTwo__i selectTwo__i-show">Смотреть клиентов </li>
@@ -138,6 +138,10 @@
                 $('.status__cub input').val(waypoint.available_size);
 
             });
+        }
+
+        function get_order_id(id){
+            $('#add_client_order_id').val(id)
         }
     </script>
 @endsection

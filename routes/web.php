@@ -21,10 +21,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('company')->name('company.')->middleware(['auth'])->group(function(){
+Route::prefix('company')->name('company.')->middleware(['auth', 'is_company'])->group(function(){
     Route::get('/', [\App\Http\Controllers\Company\IndexController::class, 'index'])->name('index');
     Route::post('/add-car', [\App\Http\Controllers\Company\IndexController::class, 'create'])->name('create.car');
     Route::get('/waypoints', [\App\Http\Controllers\Company\IndexController::class, 'waypoints'])->name('waypoints');
+    Route::post('/add-client', [\App\Http\Controllers\Company\IndexController::class, 'addClient'])->name('add.client');
 });
 
 Route::prefix('client')->name('client.')->middleware(['auth'])->group(function(){

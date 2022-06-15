@@ -148,17 +148,21 @@
 </div>
 <div class="addClient display-n">
     <div class="addClient__w">
+        <form action="{{route('company.add.client')}}" method="POST">
+            @csrf
         <button class="addClient__c"> <img src="/assets/svg/model/close.svg" alt="icons"></button>
         <div class="addClient__b">
             <div class="addClient__t">Добавление клиента к машине</div>
             <label class="label addClient__phone" for="reg__phone">
                 <p>Телефон клиента</p><img src="/assets/svg/model/phone.svg" alt="icons">
-                <input type="text" id="reg__phone" placeholder="Телефон клиента">
+                <input type="text" name="phone" id="reg__phone" placeholder="Телефон клиента">
             </label>
+            <input type="hidden" id="add_client_order_id" name="waypoint_id">
             <button class="addClient__submit">
                 <p>Добавить клиента</p>
             </button>
         </div>
+        </form>
     </div>
 </div>
 

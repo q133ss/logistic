@@ -55,4 +55,12 @@ class User extends Authenticatable
     public function get_waypoints(){
         return $this->hasMany(Waypoint::class);
     }
+
+    public function get_role(){
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
+    public function get_orders(){
+        return $this->belongsToMany(Waypoint::class, 'waypoint_user');
+    }
 }
