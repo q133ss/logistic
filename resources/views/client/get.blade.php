@@ -27,6 +27,7 @@
                                     <h5>По объему:</h5>
                                     <p>{{$waypoint->available_size}}</p>
                                 </div>
+                                <button class="carrier__car-trns chose__car" data-id="{{$waypoint->id}}"><p>Выбрать</p></button>
                             </div>
                         </li>
                         @endforeach
@@ -50,7 +51,7 @@
                         </label>
                     </div>
                         <input type="hidden" value="{{Auth()->user()->id}}" name="user_id">
-                        <input type="hidden" name="waypoint_id" value="{{$waypoints[0]->id}}">
+                        <input type="hidden" id="waypoint_id" name="waypoint_id" value="">
                     <button class="carrier__car-trns">
                         <p>Подать заявку</p><img src="/assets/svg/carrier/chevron-right.svg" alt="icons">
                     </button>
@@ -59,4 +60,13 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script>
+        $('body').on('click', '.chose__car', function () {
+            $('.chose__car').not($(this)).html('<p>Выбрать</p>');
+            $(this).html('<p>Выбран</p>');
+            $('#waypoint_id').val($(this).data('id'));
+        });
+    </script>
 @endsection
