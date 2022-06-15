@@ -31,9 +31,12 @@ class IndexController extends Controller
             'weight' => 'required',
             'departure_date' => ''
         ]);
-        $waypoint = Waypoint::create($validated);
-
-        return to_route('company.waypoints');
+        Waypoint::create($validated);
+        if(isset($request->admin)){
+            return to_route('admin.waypoints');
+        }else {
+            return to_route('company.waypoints');
+        }
     }
 
     public function waypoints(){

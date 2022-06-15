@@ -1,10 +1,17 @@
 <div class="menuService">
-    <div class="menuService-tab"><a class="menuService-elem" href="#"><img src="/assets/svg/service/truck.svg" alt="icons">
-            <p>Добавить машину</p></a><a class="menuService-elem" href="#"><img src="/assets/svg/service/map.svg" alt="icons">
-            <p>Машины на маршрутах</p></a><a class="menuService-elem" href="#"><img src="/assets/svg/service/briefcase.svg" alt="icons">
+    <div class="menuService-tab">
+        <a class="menuService-elem" href="{{route('admin.create')}}"><img src="/assets/svg/service/truck.svg" alt="icons">
+            <p>Добавить машину</p>
+        </a>
+        <a class="menuService-elem" href="{{route('admin.waypoints')}}"><img src="/assets/svg/service/map.svg" alt="icons">
+            <p>Машины на маршрутах</p>
+        </a>
+        <a class="menuService-elem" href="{{route('admin.index')}}"><img src="/assets/svg/service/briefcase.svg" alt="icons">
             <p>Транспортные компа...
-            <div>(2)</div>
-            </p></a></div>
+            <div>({{\App\Models\User::where('confirm', 0)->get()->count()}})</div>
+            </p>
+        </a>
+    </div>
     <div class="menuService-info"><a class="menuService-elem" href="#"><img src="/assets/svg/service/phone.svg" alt="icons">
             <p>Поддержка</p></a><a class="menuService-elem" href="#"><img src="/assets/svg/service/bell.svg" alt="icons">
             <p>Уведомления <span>(20)</span></p></a><a class="menuService-elem" href="#"><img src="/assets/svg/service/settings.svg" alt="icons">

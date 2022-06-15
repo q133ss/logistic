@@ -39,6 +39,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('index');
     Route::get('/accept/{id}', [\App\Http\Controllers\Admin\IndexController::class, 'accept'])->name('accept');
     Route::delete('/delete/{id}', [\App\Http\Controllers\Admin\IndexController::class, 'delete'])->name('delete');
+    Route::get('/waypoints', [\App\Http\Controllers\Admin\WaypointsController::class, 'index'])->name('waypoints');
+    Route::get('/create', [\App\Http\Controllers\Admin\IndexController::class, 'create'])->name('create');
 });
 
 Route::post('/logout', function (){
