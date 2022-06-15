@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('company')->name('company.')->middleware(['auth', 'is_company'])->group(function(){
+Route::prefix('company')->name('company.')->middleware(['auth', 'is.company'])->group(function(){
     Route::get('/', [\App\Http\Controllers\Company\IndexController::class, 'index'])->name('index');
     Route::post('/add-car', [\App\Http\Controllers\Company\IndexController::class, 'create'])->name('create.car');
     Route::get('/waypoints', [\App\Http\Controllers\Company\IndexController::class, 'waypoints'])->name('waypoints');
@@ -33,6 +33,12 @@ Route::prefix('client')->name('client.')->middleware(['auth'])->group(function()
     Route::post('/get-car', [\App\Http\Controllers\Client\IndexController::class, 'get'])->name('get.car');
     Route::post('/send-order', [\App\Http\Controllers\Client\IndexController::class, 'send'])->name('send.order');
     Route::get('/orders', [\App\Http\Controllers\Client\IndexController::class, 'orders'])->name('orders');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(function(){
+    Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('index');
+    Route::get('/accept/{id}', [\App\Http\Controllers\Admin\IndexController::class, 'accept'])->name('accept');
+    Route::delete('/delete/{id}', [\App\Http\Controllers\Admin\IndexController::class, 'delete'])->name('delete');
 });
 
 Route::post('/logout', function (){

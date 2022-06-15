@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CompanyMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class CompanyMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth()->user()->get_role->name == 'company' || Auth()->user()->get_role->name == 'admin') {
+        if(Auth()->user()->get_role->name == 'admin') {
             return $next($request);
         }else{
             abort(403, 'У Вас нет прав для посещения этого раздела');

@@ -27,7 +27,9 @@ Route::get('/get-type/{id}', [App\Http\Controllers\Api\v1\TypeController::class,
 Route::post('/find-transport/{type_id}/{from_id}/{to_id}', [App\Http\Controllers\Api\v1\SearchController::class, 'findTransport']); //Поиск транспорта на главной
 Route::post('/get-data-from-form/{type}/{from}/{to}', [App\Http\Controllers\Api\v1\SearchController::class, 'findFromForm']);
 
-Route::post('/create-company', [\App\Http\Controllers\Api\v1\CompanyController::class, 'create']);
+Route::post('/register/company', [\App\Http\Controllers\Api\v1\RegisterController::class, 'register']);
+
+//Route::post('/create-company', [\App\Http\Controllers\Api\v1\CompanyController::class, 'create']);
 Route::post('/create-user', [\App\Http\Controllers\Api\v1\UserController::class, 'create']);
 
 Route::get('/get-waypoint-data/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_data']);
@@ -36,3 +38,7 @@ Route::get('/get-status/{id}', [\App\Http\Controllers\Api\v1\WaypointController:
 
 Route::post('/update-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'update']);
 Route::delete('/delete-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'delete']);
+
+//Admin
+Route::post('/accept/{id}', [\App\Http\Controllers\Api\v1\AdminController::class, 'accept']);
+Route::delete('/delete/{id}', [\App\Http\Controllers\Api\v1\AdminController::class, 'delete']);

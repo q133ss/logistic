@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css?_v=20220601170047" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js?_v=20220601170047" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -24,7 +25,6 @@
 </header>
 <div id="app">
 @yield('content')
-    <register-form></register-form>
 </div>
 <footer class="footer"> </footer>
 <script>
@@ -146,6 +146,67 @@
         </ul>
     </div>
 </div>
+<div class="registration display-n">
+    <div class="registration__w">
+        <form action="/test" id="reg_form" method="POST">
+            <input type="hidden" name="name" value="test">
+            <input type="hidden" name="role_id" value="2">
+            <input type="hidden" name="confirm" value="0">
+        <button class="registration__c"> <img src="/assets/svg/model/close.svg" alt="icons"></button>
+        <div class="registration__b">
+            <div class="registration__t">Регистрация<br>транспортной компании</div>
+            <label class="label registration__comp" for="reg__comp">
+                <p>Название компании</p><img src="/assets/svg/model/briefcase.svg" alt="icons">
+                <input type="text" name="company" id="reg__comp" placeholder="Название компании">
+            </label>
+            <label class="label registration__user" for="reg__user">
+                <p>Контактное лицо</p><img src="/assets/svg/model/user.svg" alt="icons">
+                <input type="text" name="contact_face" id="reg__user" placeholder="Контактное лицо">
+            </label>
+            <label class="label registration__mail" for="reg__mail">
+                <p>Ваша почта</p><img src="/assets/svg/model/mail.svg" alt="icons">
+                <input type="text" name="email" id="reg__mail" placeholder="Ваша почта">
+            </label>
+            <label class="label registration__phone" for="reg__phone">
+                <p>Ваш телефон</p><img src="/assets/svg/model/phone.svg" alt="icons">
+                <input type="text" name="phone" id="reg__phone" placeholder="Ваш телефон">
+            </label>
+            <div class="registration__block">
+                <label class="label registration__bin" for="reg__bin">
+                    <p>БИН</p><img src="/assets/svg/model/credit-card.svg" alt="icons">
+                    <input type="text" name="bin" id="reg__bin" placeholder="БИН">
+                </label>
+                <label class="label registration__year" for="reg__year">
+                    <p>С какого года работаете?</p><img src="/assets/svg/model/calendar.svg" alt="icons">
+                    <input type="text" name="year" id="reg__year" placeholder="Ваш год">
+                </label>
+            </div>
+            <label class="label registration__address" for="reg__address">
+                <p>Ваш адрес</p><img src="/assets/svg/model/map.svg" alt="icons">
+                <textarea name="adress" type="text" id="reg__address" placeholder="Ваш адрес"></textarea>
+            </label>
+            <label class="label registration__text" for="reg__text">
+                <p>Ваши реквизиты</p>
+                <textarea type="text" name="requisites" id="reg__text" placeholder="Ваши реквизиты"></textarea>
+            </label>
+            <input type="hidden" id="pwd" name="password" value="12345678">
+            <div class="registration__block">
+                <label class="label registration__teng" for="reg__teng">
+                    <p>Счет в тенгэ</p><img src="/assets/svg/model/credit-card.svg" alt="icons">
+                    <input name="tenge_account" type="text" id="reg__teng" placeholder="Счет в тенгэ">
+                </label>
+                <label class="label registration__usd" for="reg__usd">
+                    <p>Счет в USD</p><img src="/assets/svg/model/credit-card.svg" alt="icons">
+                    <input type="text" name="usd_accout" id="reg__usd" placeholder="Счет в USD">
+                </label>
+            </div>
+            <button class="registration__submit" type="button" onclick="registerCompany()">
+                <p>Зарегистрироваться</p><img src="/assets/svg/model/arrow-r.svg" alt="icons">
+            </button>
+        </div>
+        </form>
+    </div>
+</div>
 <div class="addClient display-n">
     <div class="addClient__w">
         <form action="{{route('company.add.client')}}" method="POST">
@@ -223,7 +284,28 @@
 </div>
 <script src="/js/app.js"></script>
 @yield('scripts')
+<script>
+    function registerCompany(){
+        $('#reg_pwd').val(Math.random().toString(36).substring(2));
 
+        $.ajax({
+            url:     '/api/register/company', //url страницы (action_ajax_form.php)
+            type:     "POST", //метод отправки
+            dataType: "html", //формат данных
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: $("#reg_form").serialize(),  // Сеарилизуем объект
+            success: function(response) { //Данные отправлены успешно
+                document.querySelector('.registration').classList.add('display-n');
+                document.querySelector('.thx_request').classList.remove('display-n');
+            },
+            error: function(response) { // Данные не отправлены
+                console.log(response)
+            }
+        });
+    }
+</script>
 <script>
     $('.delete-btn').click(function (){
         let res = confirm('Вы уверенны?');
