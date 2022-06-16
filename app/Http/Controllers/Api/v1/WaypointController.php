@@ -31,6 +31,20 @@ class WaypointController extends Controller
         }
     }
 
+    public function create(Request $request){
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'type' => 'required',
+            'departure_city_id' => 'required|int',
+            'arrival_city_id' => 'required|int',
+            'size' => 'required|string',
+            'weight' => 'required',
+            'departure_date' => ''
+        ]);
+        Waypoint::create($validated);
+        return response()->json(['data' => 'Success']);
+    }
+
     public function update($id, Request $request){
         $validated = $request->validate([
             'car_status_id' => '',
@@ -45,5 +59,9 @@ class WaypointController extends Controller
     public function delete($id){
         Waypoint::find($id)->delete();
         return back();
+    }
+
+    public function companyWaypoints($id){
+        return Waypoint::where('user_id', $id)->get();
     }
 }

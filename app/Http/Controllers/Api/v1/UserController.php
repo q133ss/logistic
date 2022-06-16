@@ -12,4 +12,8 @@ class UserController extends Controller
     public function create(CreateUserRequest $request){
         return User::create($request->all()['data']);
     }
+
+    public function notConfirm(){
+        return User::where('confirm', 0)->get();
+    }
 }

@@ -33,12 +33,20 @@ Route::post('/register/company', [\App\Http\Controllers\Api\v1\RegisterControlle
 Route::post('/create-user', [\App\Http\Controllers\Api\v1\UserController::class, 'create']);
 
 Route::get('/get-waypoint-data/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_data']);
-Route::get('/get-statuses', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_statuses']);
-Route::get('/get-status/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_status']);
-
 Route::post('/update-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'update']);
 Route::delete('/delete-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'delete']);
+Route::post('/create-waypoint', [\App\Http\Controllers\Api\v1\WaypointController::class, 'create']);
 
+Route::get('/get-waypoints-company/{company_id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'companyWaypoints']);
+Route::get('/get-not-confirm-companies', [\App\Http\Controllers\Api\v1\UserController::class, 'notConfirm']);
+
+Route::post('/new-order', [\App\Http\Controllers\Api\v1\OrderController::class, 'create']);
+Route::get('/get-orders', [\App\Http\Controllers\Api\v1\OrderController::class, 'getAll']);
+Route::get('/get-order/{id}', [\App\Http\Controllers\Api\v1\OrderController::class, 'getOrder']);
+Route::get('/get-user-orders/{id}', [\App\Http\Controllers\Api\v1\OrderController::class, 'getUserOrders']);
+
+Route::get('/get-statuses', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_statuses']);
+Route::get('/get-status/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_status']);
 //Admin
 Route::post('/accept/{id}', [\App\Http\Controllers\Api\v1\AdminController::class, 'accept']);
 Route::delete('/delete/{id}', [\App\Http\Controllers\Api\v1\AdminController::class, 'delete']);
