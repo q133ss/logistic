@@ -43,6 +43,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(
     Route::get('/create', [\App\Http\Controllers\Admin\IndexController::class, 'create'])->name('create');
 });
 
+Route::get('/account', [\App\Http\Controllers\AccountController::class, 'check'])->name('account');
+
 Route::post('/logout', function (){
     \Session::flush();
     \Auth::logout();

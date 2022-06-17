@@ -12,10 +12,18 @@
             </p>
         </a>
     </div>
-    <div class="menuService-info"><a class="menuService-elem" href="#"><img src="/assets/svg/service/phone.svg" alt="icons">
-            <p>Поддержка</p></a><a class="menuService-elem" href="#"><img src="/assets/svg/service/bell.svg" alt="icons">
-            <p>Уведомления <span>(20)</span></p></a><a class="menuService-elem" href="#"><img src="/assets/svg/service/settings.svg" alt="icons">
-            <p>Настройки</p></a></div>
+    <div class="menuService-info">
+        <a class="menuService-elem" href="#">
+            <img src="/assets/svg/service/phone.svg" alt="icons">
+            <p>Поддержка</p>
+        </a>
+        <a class="menuService-elem" onclick="open_notifications()" href="#"><img src="/assets/svg/service/bell.svg" alt="icons">
+            <p>Уведомления <span id="notif-count">({{Auth()->user()->get_notifications->where('is_old',0)->count()}})</span></p>
+        </a>
+        <a class="menuService-elem" href="#"><img src="/assets/svg/service/settings.svg" alt="icons">
+            <p>Настройки</p>
+        </a>
+    </div>
     <button class="menuService-arrow"> <img src="/assets/svg/service/chevron-left.svg" alt="icons">
         <p>Свернуть панель</p>
     </button>
@@ -32,3 +40,26 @@
         </form>
     </div>
 </div>
+
+<script>
+    function open_notifications(){
+        $.ajax({
+            url:     '/api/read-notifications',
+            type:     "POST",
+            //dataType: "html", //формат данных
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: 1,
+            success: function(response) { //Данные отправлены успешно
+                $('#notif-count').text('(0)');
+                console.log(response);
+            },
+            error: function(response) { // Данные не отправлены
+                console.log(response);
+            }
+        });
+
+        $('.notif').toggleClass('display-n');
+    }
+</script>

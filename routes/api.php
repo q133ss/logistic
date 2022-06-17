@@ -51,4 +51,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 //Admin
     Route::post('/accept/{id}', [\App\Http\Controllers\Api\v1\AdminController::class, 'accept']);
     Route::delete('/delete/{id}', [\App\Http\Controllers\Api\v1\AdminController::class, 'delete']);
+
+//Notifications
+    Route::post('/read-notifications', [\App\Http\Controllers\Api\v1\NotificationController::class, 'read']);
 });

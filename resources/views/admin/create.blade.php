@@ -78,3 +78,6 @@
         </div>
     </section>
 @endsection
+@section('scripts')
+    @include('includes.notification', compact('notifications'))
+@endsection

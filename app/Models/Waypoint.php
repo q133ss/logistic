@@ -13,7 +13,7 @@ class Waypoint extends Model
         'passed', 'type_id', 'car_number', 'car_status_id', 'available_weight', 'available_size'];
 
     public function get_user(){
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function get_departure_city(){

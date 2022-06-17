@@ -19,6 +19,10 @@
             <button class="header__b"><img src="/assets/svg/index/user.svg" alt="icons">
                 <p>Вход / Регистрация</p>
             </button>
+            @else
+            <a class="ind-main__form-trns" href="{{route('account')}}"><img src="/assets/svg/index/user.svg" alt="icons">
+                <p>Личный кабинет</p>
+            </a>
             @endif
         </div>
     </div>
@@ -26,6 +30,9 @@
 <div id="app">
 @yield('content')
 </div>
+
+
+
 <footer class="footer"> </footer>
 <script>
     function myFunction(e) {

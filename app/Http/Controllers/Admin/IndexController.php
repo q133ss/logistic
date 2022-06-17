@@ -32,6 +32,7 @@ class IndexController extends Controller
     public function create(){
         $types = Type::all();
         $cities = City::all();
-        return view('admin.create', compact('types', 'cities'));
+        $notifications = Auth()->user()->get_notifications;
+        return view('admin.create', compact('types', 'cities', 'notifications'));
     }
 }

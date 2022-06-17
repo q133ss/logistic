@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Status;
 use App\Models\Waypoint;
+use App\Services\NewNotification;
 use Illuminate\Http\Request;
 
 class WaypointController extends Controller
@@ -52,7 +54,12 @@ class WaypointController extends Controller
             'available_weight' => 'max:100',
             'available_size' => 'max:100'
         ]);
-        Waypoint::find($id)->update($validated);
+        $waypoint = Waypoint::find($id);
+        if($waypoint->car_status_id != $request->car_status_id){
+            $notification = new NewNotification();
+            $notification->updateStatus($id, $request->car_status_id);
+        }
+        $waypoint->update($validated);
         return back();
     }
 

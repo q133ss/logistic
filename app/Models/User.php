@@ -63,4 +63,8 @@ class User extends Authenticatable
     public function get_orders(){
         return $this->belongsToMany(Waypoint::class, 'waypoint_user');
     }
+
+    public function get_notifications(){
+        return $this->hasMany(Notification::class);
+    }
 }

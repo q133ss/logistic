@@ -29,7 +29,9 @@
                         <div class="service__list-just">
                             <button class="service__list-show" onclick="get_waypoint_data('{{$waypoint->id}}')"> <img src="/assets/svg/service/eye.svg" alt="icons"></button>
                             <button class="service__list-more" onclick="get_waypoint_status('{{$waypoint->id}}')"> <img src="/assets/svg/service/more.svg" alt="icons"></button>
-                            <button class="service__list-users" onclick="get_order_id('{{$waypoint->id}}')"> <img src="/assets/svg/service/users.svg" alt="icons"></button>
+                            <button class="service__list-users" onclick="get_order_id('{{$waypoint->id}}')">
+                                <img src="/assets/svg/service/users.svg" alt="icons">
+                            </button>
                             <button class="service__list-basket"> <img src="/assets/svg/service/trash.svg" alt="icons"></button>
                             <button class="service__list-add">  <img src="/assets/svg/service/drop.svg" alt="icons"></button>
                         </div>
@@ -81,6 +83,11 @@
         </div>
     </div>
 
+    <ul class="selectTwo display-n">
+        <li class="selectTwo__i selectTwo__i-add">Добавить клиента к машине</li>
+        <li class="selectTwo__i selectTwo__i-show">Смотреть клиентов </li>
+    </ul>
+
     <script>
         function get_waypoint_data(id){
             $.get( "/api/get-waypoint-data/"+id, function( data ) {
@@ -118,7 +125,8 @@
         }
 
         function get_order_id(id){
-            $('#add_client_order_id').val(id)
+            $('#add_client_order_id').val(id);
+            $('.selectTwo').removeClass('display-n');
         }
     </script>
 @endsection

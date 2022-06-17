@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $roles = ['user', 'company', 'admin'];
+        $roles = ['client', 'company', 'admin'];
         foreach ($roles as $role){
             \App\Models\Role::create(['name' => $role]);
         }

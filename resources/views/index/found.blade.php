@@ -40,7 +40,7 @@
                     <form action="{{route('index.send.form')}}" method="POST">
                         @csrf
                     <p class="ind-main__forms-i">Поиск транспорта</p>
-                    <h3 class="ind-main__forms-t">Мы нашли для вас <br>транспорт:<span>2 фуры</span></h3>
+                    <h3 class="ind-main__forms-t">Мы нашли для вас <br>транспорт:<span>{{$data->count()}} фуры</span></h3>
                     <ul class="ind-main__forms-l">
                         @foreach($data as $waypoint)
                         <li class="ind-main__forms-e"><img class="ind-main__forms-icon" src="/assets/svg/index_two/car.svg" alt="icons">
