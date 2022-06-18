@@ -3,8 +3,8 @@
             <p>Добавить машину</p></a><a class="menuCompany-elem" href="{{route('company.waypoints')}}"><img src="/assets/svg/company/map.svg" alt="icons">
             <p>Машины на маршрутах</p></a></div>
     <div class="menuCompany-info"><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/phone.svg" alt="icons">
-            <p>Поддержка</p></a><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/bell.svg" alt="icons">
-            <p>Уведомления <span>(20)</span></p></a><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/settings.svg" alt="icons">
+            <p>Поддержка</p></a><a class="menuCompany-elem" onclick="open_notifications()" href="#"><img src="/assets/svg/company/bell.svg" alt="icons">
+            <p>Уведомления <span id="notif-count">({{Auth()->user()->get_notifications->where('is_old',0)->count()}})</span></p></a><a class="menuCompany-elem" href="#"><img src="/assets/svg/company/settings.svg" alt="icons">
             <p>Настройки</p></a></div>
     <button class="menuCompany-arrow"> <img src="/assets/svg/company/chevron-left.svg" alt="icons">
         <p>Свернуть панель</p>
@@ -22,3 +22,28 @@
         </form>
     </div>
 </div>
+
+@include('includes.notification')
+
+<script>
+    function open_notifications(){
+        $.ajax({
+            url:     '/api/read-notifications',
+            type:     "POST",
+            //dataType: "html", //формат данных
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: 1,
+            success: function(response) { //Данные отправлены успешно
+                $('#notif-count').text('(0)');
+                console.log(response);
+            },
+            error: function(response) { // Данные не отправлены
+                console.log(response);
+            }
+        });
+
+        $('.notif').toggleClass('display-n');
+    }
+</script>

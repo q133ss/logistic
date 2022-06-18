@@ -11,6 +11,10 @@
             <div>({{\App\Models\User::where('confirm', 0)->get()->count()}})</div>
             </p>
         </a>
+        <a class="menuService-elem" href="{{route('admin.orders')}}"><img src="/assets/svg/service/map.svg" alt="icons">
+            <p>Заказы</p>
+            <div></div>
+        </a>
     </div>
     <div class="menuService-info">
         <a class="menuService-elem" href="#">
@@ -63,3 +67,4 @@
         $('.notif').toggleClass('display-n');
     }
 </script>
+@include('includes.notification')

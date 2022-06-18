@@ -4,7 +4,7 @@
         <button class="notif__h-c"> <img src="/assets/svg/notif/close.svg" alt="icons"></button>
     </div>
     <ul class="notif__l">
-        @foreach($notifications as $notification)
+        @foreach(Auth()->user()->get_notifications as $notification)
         <li class="notif__l-i"> <img src="/assets/svg/notif/car.svg" alt="icons">
             <div class="notif__l-t">
                 <p>{!! $notification->text !!}</p><span>5 минут назад</span>

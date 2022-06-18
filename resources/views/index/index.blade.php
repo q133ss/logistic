@@ -68,7 +68,7 @@
                         <div class="ind-main__form-h">
                             <p>Откуда</p><img src="/assets/svg/index/help.svg" alt="icons">
                         </div>
-                        <select class="c_select" id="map_i ff" name="city1" style="display: none">
+                        <select class="c_select" id="map_i" name="city1" style="display: none">
                             <option>Начальная точка маршрута</option>
                             @foreach($cities as $city)
                             <option value="{{$city->id}}">{{$city->name}}</option>

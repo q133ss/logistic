@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Notification;
 use App\Models\Order;
+use App\Models\OrderPhone;
 use App\Models\Type;
 use App\Models\Waypoint;
+use App\Services\NewNotification;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -27,14 +30,17 @@ class IndexController extends Controller
             'name' => 'max:100',
             'phone' => 'max:24',
             'user_id' => 'int',
-            'waypoint_id' => 'max:100'
+            'waypoint_id' => 'required|max:100'
         ]);
         Order::create($validated);
+        $notification = new NewNotification();
+        $notification->newOrder($request->waypoint_id);
+
         return to_route('client.orders');
     }
 
     public function orders(){
-        $orders = Order::where('user_id', Auth()->user()->id)->get();
+        $orders = OrderPhone::where('phone', Auth()->user()->phone)->get();
         return view('client.orders', compact('orders'));
     }
 }

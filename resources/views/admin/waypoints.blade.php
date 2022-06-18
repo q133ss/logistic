@@ -6,7 +6,7 @@
             <div class="service__w">
                 @include('admin.menu')
                 <ul class="service__list">
-                    @foreach($waypoints as $waypoint)
+                    @foreach($waypoints as $key => $waypoint)
                     <li class="service__list-e">
                         <div class="service__checkbox">
                             <input class="service__checkbox__input" type="checkbox" id="checkbox_5">
@@ -29,11 +29,15 @@
                         <div class="service__list-just">
                             <button class="service__list-show" onclick="get_waypoint_data('{{$waypoint->id}}')"> <img src="/assets/svg/service/eye.svg" alt="icons"></button>
                             <button class="service__list-more" onclick="get_waypoint_status('{{$waypoint->id}}')"> <img src="/assets/svg/service/more.svg" alt="icons"></button>
-                            <button class="service__list-users" onclick="get_order_id('{{$waypoint->id}}')">
+                            <button class="service__list-users company__list-users" onclick="get_order_id('{{$waypoint->id}}')">
                                 <img src="/assets/svg/service/users.svg" alt="icons">
                             </button>
+                            <form action="/api/delete-waypoint/{{$waypoint->id}}" method="POST">
+                                @method('DELETE')
+                                @csrf
                             <button class="service__list-basket"> <img src="/assets/svg/service/trash.svg" alt="icons"></button>
-                            <button class="service__list-add">  <img src="/assets/svg/service/drop.svg" alt="icons"></button>
+                            </form>
+                            <button class="service__list-add" type="submit">  <img src="/assets/svg/service/drop.svg" alt="icons"></button>
                         </div>
                     </li>
                     @endforeach
@@ -82,11 +86,6 @@
             </form>
         </div>
     </div>
-
-    <ul class="selectTwo display-n">
-        <li class="selectTwo__i selectTwo__i-add">Добавить клиента к машине</li>
-        <li class="selectTwo__i selectTwo__i-show">Смотреть клиентов </li>
-    </ul>
 
     <script>
         function get_waypoint_data(id){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Order;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,7 +33,11 @@ class IndexController extends Controller
     public function create(){
         $types = Type::all();
         $cities = City::all();
-        $notifications = Auth()->user()->get_notifications;
-        return view('admin.create', compact('types', 'cities', 'notifications'));
+        return view('admin.create', compact('types', 'cities'));
+    }
+
+    public function orders(){
+        $orders = Order::orderBy('created_at', 'DESC')->get();
+        return view('admin.orders', compact('orders'));
     }
 }

@@ -47,10 +47,10 @@
                             <button class="company__list-users" onclick="get_order_id('{{$waypoint->id}}')">
                                 <ul class="selectTwo display-n">
                                     <li class="selectTwo__i selectTwo__i-add">Добавить клиента к машине</li>
-                                    <li class="selectTwo__i selectTwo__i-show">Смотреть клиентов </li>
+                                    <li class="selectTwo__i selectTwo__i-show" onclick="view_clients('{{$waypoint->id}}')">Смотреть клиентов </li>
                                 </ul><img src="/assets/svg/company/users.svg" alt="icons">
                             </button>
-                            <form action="/api/delete-waypoint/{{$waypoint->id}}" method="POST">
+                            <form action="/api/delete-order/{{$waypoint->id}}" method="POST">
                                 @method('DELETE')
                             <button class="company__list-basket delete-btn" type="submit"> <img src="/assets/svg/company/trash.svg" alt="icons"></button>
                             </form>
@@ -64,6 +64,52 @@
     </section>
 @endsection
 @section('scripts')
+    <style>
+        .view_client{
+            position : fixed;
+            top : 0;
+            left : 0;
+            width : 100%;
+            height : 100vh;
+            overflow-x : hidden;
+            overflow-y : auto;
+            outline : 0;
+            z-index : 100;
+            display : -webkit-box;
+            display : -ms-flexbox;
+            display : flex;
+            -webkit-box-align : center;
+            -ms-flex-align : center;
+            align-items : center;
+            padding : 35px 0;
+            background : rgba(54, 54, 54, 0.3);
+        }
+
+        .view__w{
+            width : 400px;
+            height : -webkit-max-content;
+            height :    -moz-max-content;
+            height :         max-content;
+            margin : 0 auto;
+            background : #ffffff;
+            display : block;
+            /*-webkit-box-orient : vertical;*/
+            /*-webkit-box-direction : normal;*/
+            /*-ms-flex-direction : column;*/
+            /*flex-direction : column;*/
+            /*-webkit-box-align : center;*/
+            /*-ms-flex-align : center;*/
+            /*align-items : center;*/
+            /*-webkit-box-pack : start;*/
+            /*-ms-flex-pack : start;*/
+            /*justify-content : flex-start;*/
+            position : relative;
+            padding : 16px;
+            -webkit-box-shadow : 5px 5px 20px rgba(0, 0, 0, 0.15);
+            box-shadow : 5px 5px 20px rgba(0, 0, 0, 0.15);
+            border-radius : 16px;
+        }
+    </style>
     <div class="status display-n">
         <div class="status__w">
             <form action="#" id="status_form" method="POST">
@@ -79,7 +125,6 @@
                         @foreach($statuses as $status)
                             <option value="{{$status->id}}">{{$status->name}}</option>
                         @endforeach
-
                     </select>
                 </div>
                 <label class="label status__path" for="reg__mail">
@@ -96,6 +141,10 @@
                         <input type="text" name="available_size" id="reg__usd" placeholder="м.куб">
                     </label>
                 </div>
+                <label class="label status__path" for="reg__mail">
+                    <p>Уведомление клиентам</p><img src="/assets/svg/reg/ready.svg" alt="icons">
+                    <input type="text" name="notification" id="notification" placeholder="Машина с вашим грузом прибудет завтра">
+                </label>
                 <button class="status__submit" type="submit">
                     <p>Обновить статус</p>
                 </button>
@@ -104,6 +153,12 @@
         </div>
     </div>
 
+{{--    ...--}}
+    <div class="view_client display-n">
+        <div class="view__w" id="view_clients">
+        </div>
+    </div>
+{{--    ...--}}
     <script>
         function get_waypoint_data(id){
             $.get( "/api/get-waypoint-data/"+id, function( data ) {
@@ -143,5 +198,29 @@
         function get_order_id(id){
             $('#add_client_order_id').val(id)
         }
+
+        function view_clients(id){
+            $.get( "/api/get-waypoint-clients/"+id, function( data ) {
+                let result = "";
+
+                for (let i = 0; i < data.data.length; i++){
+                    result += '<span>Телефон:'+data.data[i]['phone'] + '</span><br>';
+                }
+
+                $('#view_clients').html(result);
+            });
+            $('.view_client').removeClass('display-n');
+            $('body').css('overflow','hidden');
+        }
+    </script>
+    <script>
+        $('.view_client').mouseup(function (e) {
+            var div = $('.view__w');
+
+            if (!div.is(e.target) && div.has(e.target).length === 0) {
+                $('.view_client').addClass('display-n');
+                $('body').css('overflow', 'visible');
+            }
+        });
     </script>
 @endsection

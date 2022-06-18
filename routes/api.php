@@ -18,7 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
+//Route::group(['middleware' => 'auth:sanctum'], function(){
+Route::group([], function(){
 
     Route::get('/get-cities', [App\Http\Controllers\Api\v1\CityController::class, 'getCities']);
     Route::get('/get-city/{id}', [App\Http\Controllers\Api\v1\CityController::class, 'getCity']);
@@ -33,10 +34,13 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 //Route::post('/create-company', [\App\Http\Controllers\Api\v1\CompanyController::class, 'create']);
     Route::post('/create-user', [\App\Http\Controllers\Api\v1\UserController::class, 'create']);
 
+    Route::get('/get-waypoint-company/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_company']);
     Route::get('/get-waypoint-data/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_data']);
+    Route::get('/get-waypoint-data-from-order/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_waypoint_from_order']);
     Route::post('/update-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'update']);
     Route::delete('/delete-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'delete']);
     Route::post('/create-waypoint', [\App\Http\Controllers\Api\v1\WaypointController::class, 'create']);
+    Route::get('/get-waypoint-clients/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_clients']);
 
     Route::get('/get-waypoints-company/{company_id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'companyWaypoints']);
     Route::get('/get-not-confirm-companies', [\App\Http\Controllers\Api\v1\UserController::class, 'notConfirm']);
@@ -45,6 +49,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/get-orders', [\App\Http\Controllers\Api\v1\OrderController::class, 'getAll']);
     Route::get('/get-order/{id}', [\App\Http\Controllers\Api\v1\OrderController::class, 'getOrder']);
     Route::get('/get-user-orders/{id}', [\App\Http\Controllers\Api\v1\OrderController::class, 'getUserOrders']);
+    Route::delete('/delete-order/{id}', [\App\Http\Controllers\Api\v1\OrderController::class, 'delete']);
 
     Route::get('/get-statuses', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_statuses']);
     Route::get('/get-status/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_status']);

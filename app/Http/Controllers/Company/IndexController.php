@@ -29,7 +29,8 @@ class IndexController extends Controller
             'arrival_city_id' => 'required|int',
             'size' => 'required|string',
             'weight' => 'required',
-            'departure_date' => ''
+            'departure_date' => '',
+            'car_number' => ''
         ]);
         Waypoint::create($validated);
         if(isset($request->admin)){

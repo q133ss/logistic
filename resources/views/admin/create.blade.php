@@ -70,14 +70,20 @@
                                 <input required type="text" name="departure_date" id="company__three" placeholder="Дата загрузки">
                             </label>
                             <input type="hidden" name="admin" value="1">
-                        </div><button class="company__search-rsl" type="submit">
+                        </div>
+                        <div class="company__search-g">
+                        <label class="company__search-e label" for="company__three">
+                            <div class="company__search-text">
+                                <p>Номер машины</p><img src="/assets/svg/company/help.svg" alt="icons">
+                            </div>
+                            <input required type="text" name="car_number" id="company__three" placeholder="001 ААА 17">
+                        </label>
+                        </div>
+                        <button class="company__search-rsl" type="submit">
                             <p>Добавить транспорт</p><img src="/assets/svg/company/chevron-right.svg" alt="icons"></button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
-@endsection
-@section('scripts')
-    @include('includes.notification', compact('notifications'))
 @endsection

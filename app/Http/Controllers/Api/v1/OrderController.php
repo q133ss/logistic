@@ -30,4 +30,9 @@ class OrderController extends Controller
     public function getUserOrders($id){
         return Order::where('user_id',$id)->get();
     }
+
+    public function delete($id){
+        $order = Order::find($id);
+        $order->delete();
+    }
 }

@@ -41,6 +41,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(
     Route::delete('/delete/{id}', [\App\Http\Controllers\Admin\IndexController::class, 'delete'])->name('delete');
     Route::get('/waypoints', [\App\Http\Controllers\Admin\WaypointsController::class, 'index'])->name('waypoints');
     Route::get('/create', [\App\Http\Controllers\Admin\IndexController::class, 'create'])->name('create');
+    Route::get('/orders', [\App\Http\Controllers\Admin\IndexController::class, 'orders'])->name('orders');
 });
 
 Route::get('/account', [\App\Http\Controllers\AccountController::class, 'check'])->name('account');

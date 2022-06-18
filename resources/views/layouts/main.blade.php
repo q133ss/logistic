@@ -16,7 +16,7 @@
     <div class="containers">
         <div class="header__w"><a class="header__l" href="/"><picture><source srcset="/assets/img/logo.webp" type="image/webp"><img class="header__l-o" src="/assets/img/logo.png" alt="logo"></picture><picture><source srcset="/assets/img/logo_m.webp" type="image/webp"><img class="header__l-m" src="/assets/img/logo_m.png" alt="logo"></picture></a>
             @if(!Auth()->check())
-            <button class="header__b"><img src="/assets/svg/index/user.svg" alt="icons">
+            <button class="header__b" onclick="location.href='{{route('login')}}'"><img src="/assets/svg/index/user.svg" alt="icons">
                 <p>Вход / Регистрация</p>
             </button>
             @else
