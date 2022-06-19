@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'phone' => '+7 (222) 22-22-222',
+            'phone' => '+7 (222) 222-22-22',
             'contact_face' => 'Иван',
             'company' => 'ООО Ромашка',
             'bin' => 11111,
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'phone' => '+7 (333) 33-33-333',
+            'phone' => '+7 (333) 333-33-33',
             'role_id' => 1,
             'confirm' => 1,
         ]);

@@ -9,7 +9,7 @@ class FindTransportService{
 //    }
 
     public function find($type, $from, $to){
-        $waypoints = Waypoint::where('departure_city_id', $from)->where('arrival_city_id', $to)->where('type_id', $type)->get();
+        $waypoints = Waypoint::where('departure_city_id', $from)->where('arrival_city_id', $to)->where('type_id', $type)->where('car_status_id', 1)->get();
         return ['data' => collect($waypoints)];
     }
 }

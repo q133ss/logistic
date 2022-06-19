@@ -32,11 +32,11 @@
                                 <button class="service__list-users company__list-users" title="Данные о пользователе" onclick="get_user_data('{{$order->id}}')">
                                     <img src="/assets/svg/service/users.svg" alt="icons">
                                 </button>
-{{--                                <form action="/api/delete-waypoint/{{$order->id}}" method="POST">--}}
-{{--                                    @method('DELETE')--}}
-{{--                                    @csrf--}}
-{{--                                    <button class="service__list-basket"> <img src="/assets/svg/service/trash.svg" alt="icons"></button>--}}
-{{--                                </form>--}}
+                                <form action="{{route('admin.order.delete', $order->id)}}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="service__list-basket"> <img src="/assets/svg/service/trash.svg" alt="icons"></button>
+                                </form>
                                 <button class="service__list-add" type="submit">  <img src="/assets/svg/service/drop.svg" alt="icons"></button>
                             </div>
                         </li>
@@ -56,49 +56,38 @@
                     <div class="info_car__t">Компания</div>
                     <div class="info_car__e">
                         <h5>Название:</h5>
-                        <p id="comp_title">Ромашка</p>
+                        <p id="comp_title"></p>
                     </div>
 
                     <div class="info_car__e">
                         <h5>Контактное лицо</h5>
-                        <p id="comp_face">Алексей</p>
+                        <p id="comp_face"></p>
                     </div>
 
                     <div class="info_car__e">
                         <h5>Телефон</h5>
                         <p id="comp_phone">
-                            89999
+
                         </p>
                     </div>
                 </li>
                 <li class="info_car__i">
                     <div class="info_car__t">Машина</div>
                     <div class="info_car__e">
+                        <h5>Номер:</h5>
+                        <p id="car_number"></p>
+                    </div>
+                    <div class="info_car__e">
                         <h5>Дата оправления:</h5>
-                        <p id="date_of_comp_dep">25.06.2022</p>
+                        <p id="date_of_comp_dep"></p>
                     </div>
                     <div class="info_car__e">
                         <h5>Время в пути:</h5>
-                        <p id="time_on_tr_compavel">2 дня</p>
+                        <p id="time_on_tr_compavel"></p>
                     </div>
                     <div class="info_car__e">
                         <h5>Дата прибытия:</h5>
-                        <p id="date_of_comp_arr">27.06.2022</p>
-                    </div>
-                </li>
-                <li class="info_car__i">
-                    <div class="info_car__t">Данные по грузу</div>
-                    <div class="info_car__e">
-                        <h5>Доступный вес:</h5>
-                        <p id="data_of_av_weight"> кг</p>
-                    </div>
-                    <div class="info_car__e">
-                        <h5>Доступный объем:</h5>
-                        <p id="data_of_av_size">20 м.куб</p>
-                    </div>
-                    <div class="info_car__e">
-                        <h5>Кол-во упаковок:</h5>
-                        <p id="data_of_comp_qty">25 шт.</p>
+                        <p id="date_of_comp_arr"></p>
                     </div>
                 </li>
             </ul>
@@ -120,6 +109,7 @@
             $.get( "/api/get-waypoint-data-from-order/"+waypoint_id, function( data ) {
                 let waypoint = data.data;
 
+                $('#car_number').text(waypoint.car_number);
                 $('#date_of_comp_dep').text(waypoint.departure_date);
                 $('#time_on_comp_travel').text(waypoint.travel_time);
                 $('#date_of_comp_arr').text(waypoint.arrival_date);

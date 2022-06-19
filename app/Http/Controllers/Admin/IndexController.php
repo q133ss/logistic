@@ -13,7 +13,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $companies = User::where('confirm',0)->get();
+        $companies = User::orderBy('confirm', 'ASC')->where('confirm', '!=', 3)->get();
         return view('admin.index', compact('companies'));
     }
 
@@ -39,5 +39,11 @@ class IndexController extends Controller
     public function orders(){
         $orders = Order::orderBy('created_at', 'DESC')->get();
         return view('admin.orders', compact('orders'));
+    }
+
+    public function orderDelete($id){
+        $order = Order::find($id);
+        $order->delete();
+        return back();
     }
 }

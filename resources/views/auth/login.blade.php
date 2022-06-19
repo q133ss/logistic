@@ -56,39 +56,42 @@
                 </form>
 
                 <div class="reg__regist display-n">
-                    <label class="reg__regist-p">
-                        <div class="reg__regist-i"> <img src="/assets/svg/reg/phone.svg" alt="icons"></div>
-                        <div class="reg__regist-l"> </div>
-                        <input class="reg__regist-t" placeholder="Введите свой номер" id="reg__phone">
-                    </label>
-                    <label class="reg__regist-p">
-                        <div class="reg__regist-i"> <img src="/assets/svg/reg/pass.svg" alt="icons"></div>
-                        <div class="reg__regist-l"> </div>
-                        <input class="reg__regist-t" type="password" placeholder="Придумайте пароль">
-                    </label>
-                    <label class="reg__regist-p">
-                        <div class="reg__regist-i"> <img src="/assets/svg/reg/ready.svg" alt="icons"></div>
-                        <div class="reg__regist-l"> </div>
-                        <input class="reg__regist-t" type="password" placeholder="Подтвердите пароль">
-                    </label>
+                    <form action="{{route('register')}}" method="POST">
+                        @csrf
+                        <label class="reg__regist-p">
+                            <div class="reg__regist-i"> <img src="/assets/svg/reg/phone.svg" alt="icons"></div>
+                            <div class="reg__regist-l"> </div>
+                            <input class="reg__regist-t" name="phone" placeholder="Введите свой номер" id="reg__phone">
+                        </label>
+                        <label class="reg__regist-p">
+                            <div class="reg__regist-i"> <img src="/assets/svg/reg/pass.svg" alt="icons"></div>
+                            <div class="reg__regist-l"> </div>
+                            <input class="reg__regist-t" name="password" type="password" placeholder="Придумайте пароль">
+                        </label>
+                        <label class="reg__regist-p">
+                            <div class="reg__regist-i"> <img src="/assets/svg/reg/ready.svg" alt="icons"></div>
+                            <div class="reg__regist-l"> </div>
+                            <input class="reg__regist-t" name="password_confirmation" type="password" placeholder="Подтвердите пароль">
+                        </label>
 
-                    <label class="reg__regist-p">
-                        <div class="reg__regist-i"> <img src="/assets/svg/reg/ready.svg" alt="icons"></div>
-                        <div class="reg__regist-l"> </div>
-                        <input type="radio" value="1" class="reg__radio" name="role_id">
-                        <span class="reg__regist-t reg-select-c">Я клиент</span>
-                    </label>
+                        <label class="reg__regist-p">
+                            <div class="reg__regist-i"> <img src="/assets/svg/reg/ready.svg" alt="icons"></div>
+                            <div class="reg__regist-l"> </div>
+                            <input type="radio" value="1" class="reg__radio" name="role_id">
+                            <span class="reg__regist-t reg-select-c">Я клиент</span>
+                        </label>
 
-                    <label class="reg__regist-p">
-                        <div class="reg__regist-i"> <img src="/assets/svg/reg/ready.svg" alt="icons"></div>
-                        <div class="reg__regist-l"> </div>
-                        <input type="radio" value="2" class="reg__radio" name="role_id">
-                        <span class="reg__regist-t reg-select-c">Я компания</span>
-                    </label>
+                        <label class="reg__regist-p">
+                            <div class="reg__regist-i"> <img src="/assets/svg/reg/ready.svg" alt="icons"></div>
+                            <div class="reg__regist-l"> </div>
+                            <input type="radio" value="2" class="reg__radio" name="role_id">
+                            <span class="reg__regist-t reg-select-c">Я компания</span>
+                        </label>
 
-                    <button class="reg__regist-a">
-                        <p>Далее</p>
-                    </button>
+                        <button class="reg__regist-a" type="submit">
+                            <p>Далее</p>
+                        </button>
+                    </form>
                 </div>
 
                 <div class="reg__code display-n">

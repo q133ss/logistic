@@ -35,14 +35,18 @@ Route::prefix('client')->name('client.')->middleware(['auth'])->group(function()
     Route::get('/orders', [\App\Http\Controllers\Client\IndexController::class, 'orders'])->name('orders');
 });
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin', 'check.token'])->group(function(){
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('index');
     Route::get('/accept/{id}', [\App\Http\Controllers\Admin\IndexController::class, 'accept'])->name('accept');
     Route::delete('/delete/{id}', [\App\Http\Controllers\Admin\IndexController::class, 'delete'])->name('delete');
     Route::get('/waypoints', [\App\Http\Controllers\Admin\WaypointsController::class, 'index'])->name('waypoints');
     Route::get('/create', [\App\Http\Controllers\Admin\IndexController::class, 'create'])->name('create');
     Route::get('/orders', [\App\Http\Controllers\Admin\IndexController::class, 'orders'])->name('orders');
+    Route::delete('/delete-order/{id}', [\App\Http\Controllers\Admin\IndexController::class, 'orderDelete'])->name('order.delete');
 });
+
+Route::get('/account/settings', [\App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
+Route::post('/account/settings', [\App\Http\Controllers\SettingsController::class, 'save'])->name('settings');
 
 Route::get('/account', [\App\Http\Controllers\AccountController::class, 'check'])->name('account');
 

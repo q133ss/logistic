@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('name');
             $table->string('phone');
+            $table->unsignedBigInteger('visible')->default(1);
             $table->foreign('waypoint_id')->references('id')->on('waypoints'); //компании привязанные к юзеру
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

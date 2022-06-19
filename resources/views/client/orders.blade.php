@@ -6,6 +6,11 @@
             <div class="carrier__w">
                 @include('client.menu')
                 <ul class="carrier__info">
+                    @if($orders->count() == 0)
+                        <li class="carrier__info-w">
+                            Активных заказов нет
+                        </li>
+                    @endif
                     @foreach($orders as $order)
                     <li class="carrier__info-w">
                         <div class="carrier__info-icon"><img src="/assets/svg/carrier/car.svg" alt="icons"></div>

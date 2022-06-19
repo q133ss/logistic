@@ -18,8 +18,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::group(['middleware' => 'auth:sanctum'], function(){
-Route::group([], function(){
+Route::prefix('sanctum')->namespace('API')->group(function() {
+    Route::post('register', [\App\Http\Controllers\Api\v1\AuthController::class, 'register']);
+    Route::post('token', [\App\Http\Controllers\Api\v1\AuthController::class, 'token']);
+});
+
+Route::middleware('auth:sanctum')->get('/name', function (Request $request) {
+    return response()->json(['name' => $request->user()->name]);
+});
+
+Route::group(['middleware' => 'auth:sanctum'], function(){
+//Route::group([], function(){
 
     Route::get('/get-cities', [App\Http\Controllers\Api\v1\CityController::class, 'getCities']);
     Route::get('/get-city/{id}', [App\Http\Controllers\Api\v1\CityController::class, 'getCity']);
@@ -41,6 +50,7 @@ Route::group([], function(){
     Route::delete('/delete-waypoint/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'delete']);
     Route::post('/create-waypoint', [\App\Http\Controllers\Api\v1\WaypointController::class, 'create']);
     Route::get('/get-waypoint-clients/{id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'get_clients']);
+    Route::get('/get-company-info/{id}', [\App\Http\Controllers\Api\v1\CompanyController::class, 'info']);
 
     Route::get('/get-waypoints-company/{company_id}', [\App\Http\Controllers\Api\v1\WaypointController::class, 'companyWaypoints']);
     Route::get('/get-not-confirm-companies', [\App\Http\Controllers\Api\v1\UserController::class, 'notConfirm']);

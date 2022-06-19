@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id')->default(1);
-            $table->unsignedBigInteger('confirm');
+            $table->unsignedBigInteger('confirm')->default(3);
             $table->string('company')->nullable();
             $table->string('contact_face')->nullable();
             $table->string('phone')->nullable();
@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('requisites')->nullable();
             $table->string('tenge_account')->nullable();
             $table->string('usd_account')->nullable();
+            $table->string('device_name')->default('web');
+            $table->string('bearer_token')->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
         });
     }

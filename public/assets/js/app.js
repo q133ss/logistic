@@ -35,7 +35,8 @@ $(function () {
       $('.ind-main__forms-bar').eq(i - 1).css('width', "".concat($('.ind-main__forms-p').eq(i - 1).attr('data-progress')));
     }
   }, 500);
-  $('#index__phone, #reg__phone').mask('+7 (999) 99-99-999');
+  $('#index__phone, #reg__phone').mask('+7 (999) 999-99-99');
+  $('#company__three').datepicker();
 }); //! Model - Thx Request
 
 $('.registration__submit').on('click', function () {
@@ -158,7 +159,7 @@ $(document).on('click', function (e) {
 $('.service__info-more').on('click', function () {
   var _this = this;
 
-  $('.service__info-more').children("selectOne").addClass('display-n');
+  $('.service__info-more').children('selectOne').addClass('display-n');
   setTimeout(function () {
     $(_this).children('.selectOne').removeClass('display-n');
   }, 1);
@@ -177,7 +178,7 @@ $(document).mouseup(function (e) {
 $('.company__list-users').on('click', function () {
   var _this2 = this;
 
-  $('.company__list-users').children("selectTwo").addClass('display-n');
+  $('.company__list-users').children('selectTwo').addClass('display-n');
   setTimeout(function () {
     $(_this2).children('.selectTwo').removeClass('display-n');
   }, 1);

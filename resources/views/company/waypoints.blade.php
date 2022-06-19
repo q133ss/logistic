@@ -50,8 +50,9 @@
                                     <li class="selectTwo__i selectTwo__i-show" onclick="view_clients('{{$waypoint->id}}')">Смотреть клиентов </li>
                                 </ul><img src="/assets/svg/company/users.svg" alt="icons">
                             </button>
-                            <form action="/api/delete-order/{{$waypoint->id}}" method="POST">
+                            <form action="/api/delete-waypoint/{{$waypoint->id}}" method="POST">
                                 @method('DELETE')
+                                @csrf
                             <button class="company__list-basket delete-btn" type="submit"> <img src="/assets/svg/company/trash.svg" alt="icons"></button>
                             </form>
                             <button class="company__list-add">  <img src="/assets/svg/company/drop.svg" alt="icons"></button>
